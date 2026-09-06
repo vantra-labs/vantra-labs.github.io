@@ -1,0 +1,492 @@
+/* ============================================================================
+   Стили страниц. Общая основа — в site.css.
+
+   Разделено на два файла не ради красоты структуры: site.css одинаков для
+   обеих страниц и кэшируется при переходе между ними, а меняющаяся часть
+   лежит отдельно.
+   ========================================================================= */
+
+/* ============================================================================
+   СТРАНИЦА ПРОДУКТА
+   ========================================================================= */
+
+/* --- Первый экран ------------------------------------------------------
+   Композиция несимметричная: текст держится левой колонки, снимок уходит за
+   правый край экрана. Снимок обрезан краем намеренно — так видно, что окно
+   продолжается, и не приходится делать вид, будто приложение помещается в
+   аккуратную карточку.                                                     */
+
+.hero {
+  padding-top: clamp(3rem, 7vw, 5.5rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+  overflow: hidden;
+}
+
+.hero__grid {
+  display: grid;
+  /* Колонки почти поровну. Была узкая левая, и от неё заголовок ломался на
+     четыре строки, а две кнопки не вставали в ряд. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+  gap: clamp(2.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+.hero h1 {
+  /* Верхняя граница подобрана замером, а не на глаз: колонка на широком
+     экране 523 px, и заголовок ложится в две строки вплоть до 46 px. Взято
+     44.8 px с запасом на случай, если шрифт подгрузится с другой метрикой.
+     Крупнее — разъезжается на три строки и первый экран разваливается. */
+  font-size: clamp(2rem, 3.7vw, 2.8rem);
+  max-width: 20ch;
+}
+.hero__lead {
+  margin-top: 1.5rem;
+  font-size: clamp(1.0625rem, 1.7vw, 1.25rem);
+  color: var(--ink-2);
+  max-width: 40ch;
+}
+.hero__actions {
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.hero__shot {
+  position: relative;
+  margin-right: calc(50% - 50vw);
+  border-radius: var(--r-image) 0 0 var(--r-image);
+  overflow: hidden;
+  box-shadow: var(--shadow-deep);
+  border: 1px solid var(--line);
+  border-right: 0;
+}
+.hero__shot img { width: 100%; }
+
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero h1 { max-width: 18ch; }
+  .hero__shot {
+    margin-right: calc(50% - 50vw);
+    margin-left: calc(50% - 50vw);
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  /* Окно шириной 1600 точек, ужатое в экран телефона, превращается в серую
+     рябь: строки перестают читаться, и снимок работает как обои, а не как
+     доказательство. Поэтому на узком экране показываем его крупнее и
+     обрезаем справа — видно настоящие строки, а не их намёк. */
+  .hero__shot {
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+  }
+  .hero__shot img {
+    width: 175%;
+    max-width: none;
+  }
+}
+
+/* На совсем узких увеличиваем ещё: там и 175% мало. */
+@media (max-width: 520px) {
+  .hero__shot { aspect-ratio: 4 / 3; }
+  .hero__shot img { width: 235%; }
+}
+
+/* --- Что он умеет: плитки разного размера ------------------------------
+   Ячеек ровно столько, сколько содержимого. Две из пяти несут снимок, а не
+   только текст: сетка одинаковых карточек с тонкими иконками читается как
+   заготовка, даже когда текст в ней хороший.                              */
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.9rem, 1.6vw, 1.25rem);
+}
+.tile {
+  grid-column: span 2;
+  padding: clamp(1.5rem, 2.4vw, 2rem);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-block);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.tile h3 { font-size: 1.1875rem; letter-spacing: -0.01em; }
+.tile p { color: var(--ink-2); font-size: 0.9688rem; }
+
+.tile--wide { grid-column: span 4; }
+.tile--full { grid-column: span 6; }
+
+.tile--shot { padding-bottom: 0; overflow: hidden; }
+.tile--shot .tile__media {
+  margin-top: 0.7rem;
+  border-radius: var(--r-image) var(--r-image) 0 0;
+  border: 1px solid var(--line);
+  border-bottom: 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-lift);
+}
+
+/* Разбор фразы. Это схема, а не снимок экрана и не подделка под интерфейс:
+   она объясняет, что происходит внутри, быстрее, чем абзац текста.
+   Подписи под фрагментами берутся из data-role, чтобы разметка не
+   повторяла одно и то же дважды. */
+.parse { margin-top: auto; padding-top: clamp(1.25rem, 2.5vw, 2rem); }
+.parse__phrase {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 500;
+  font-size: clamp(0.9375rem, 1.7vw, 1.3125rem);
+  line-height: 2;
+  /* Место под подписи, которые висят под фрагментами. */
+  padding-bottom: 1.4rem;
+  color: var(--ink);
+}
+.parse__part {
+  position: relative;
+  padding: 0.12em 0.36em;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+  box-shadow: inset 0 -2px 0 var(--line-strong);
+  white-space: nowrap;
+}
+.parse__part::after {
+  content: attr(data-role);
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 7px);
+  transform: translateX(-50%);
+  font-family: 'Golos Text', sans-serif;
+  font-weight: 500;
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* Произнесённая фраза набрана крупно: этот блок про голос, и голос здесь
+   уместнее показать словом, чем нарисованным микрофоном. */
+.tile p.tile__quote {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 500;
+  font-size: clamp(1rem, 1.6vw, 1.1875rem);
+  line-height: 1.4;
+  color: var(--ink);
+  margin-block: 0.35rem 0.15rem;
+}
+
+@media (max-width: 900px) {
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tile, .tile--wide, .tile--full { grid-column: span 2; }
+
+  /* Подписи висят под фрагментами абсолютно, и перенос строки их ломал:
+     «ДАТА» садилось прямо на плашку «#работа» со следующей строки. Запрет
+     переноса не подошёл — фраза просто не влезает в 390 точек и обрезалась.
+     Решение: каждый фрагмент становится отдельным блоком и уносит с собой
+     место под свою подпись. Тогда перенос безопасен в любом месте. */
+  .parse__phrase {
+    font-size: clamp(0.875rem, 3.6vw, 1.0625rem);
+    line-height: 1.7;
+    padding-bottom: 0.4rem;
+  }
+  .parse__part {
+    display: inline-block;
+    margin-bottom: 1.35em;
+  }
+}
+
+/* --- Галерея -----------------------------------------------------------
+   Прокрутка НАСТОЯЩАЯ, а не сдвиг слайдов скриптом. Из этого бесплатно
+   получается свайп с инерцией на телефоне, работа колеса, трекпада и
+   клавиатуры. Скрипт нужен только стрелкам и точкам, и без него галерея
+   остаётся полностью рабочей.                                             */
+
+.gallery { position: relative; }
+
+.gallery__track {
+  display: flex;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* Боковые отступы, чтобы первый и последний слайд вставали в ту же
+     позицию, что и средние. */
+  padding-inline: max(var(--gutter), calc(50vw - var(--page) / 2));
+  padding-block: 0.5rem;
+  margin-inline: calc(50% - 50vw);
+}
+.gallery__track::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery__track { scroll-behavior: auto; }
+}
+
+.slide {
+  flex: 0 0 min(82vw, 880px);
+  margin: 0;
+  scroll-snap-align: center;
+}
+
+.slide__media {
+  border-radius: var(--r-image);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-deep);
+  background: var(--surface);
+}
+.slide__media img { width: 100%; }
+
+.slide figcaption { margin-top: 1.25rem; max-width: 52ch; }
+.slide__title {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+}
+.slide__text { margin-top: 0.45rem; color: var(--ink-2); font-size: 0.9688rem; }
+
+/* Глубина по положению в кадре: слайд в центре выходит вперёд, соседние
+   отступают и притухают. Привязано к позиции прокрутки, а не проиграно по
+   таймеру, поэтому при движении пальцем картинка идёт ЗА пальцем и
+   останавливается вместе с ним.
+
+   Только там, где браузер это умеет. Где не умеет — лента ровная, и ничего
+   не сломано. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes slide-depth {
+      0%, 100% { opacity: 0.42; transform: scale(0.9); }
+      50%      { opacity: 1;    transform: scale(1); }
+    }
+    .slide__media {
+      animation: slide-depth linear both;
+      animation-timeline: view(inline);
+      animation-range: entry-crossing 8% exit-crossing 92%;
+      will-change: transform, opacity;
+    }
+  }
+}
+
+.gallery__controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.gallery__arrow {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-press);
+  cursor: pointer;
+  transition: border-color var(--fast) var(--ease), opacity var(--fast) var(--ease);
+}
+.gallery__arrow:hover:not(:disabled) { border-color: var(--ink); }
+.gallery__arrow:disabled { opacity: 0.3; cursor: default; }
+.gallery__arrow svg { width: 18px; height: 18px; }
+
+.gallery__dots { display: flex; gap: 0.5rem; margin-left: auto; }
+.gallery__dot {
+  position: relative;
+  width: 28px; height: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-press);
+  background: var(--line-strong);
+  cursor: pointer;
+  transition: background var(--fast) var(--ease);
+}
+.gallery__dot[aria-current="true"] { background: var(--ink); }
+/* Область нажатия больше самой полоски: четыре пикселя пальцем не поймать. */
+.gallery__dot::before {
+  content: '';
+  position: absolute;
+  inset: -12px -4px;
+}
+
+@media (max-width: 620px) {
+  .gallery__dots { display: none; }
+}
+
+/* --- Телефон -----------------------------------------------------------
+   Раскладка зеркальна первому экрану и с другой пропорцией: два блока с
+   одинаковым делением подряд читаются как один повторённый.               */
+
+.phone-block {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+.phone-block__shot {
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-deep);
+  justify-self: center;
+  width: 100%;
+  max-width: 310px;
+}
+.phone-block h2 { font-size: clamp(1.75rem, 3.4vw, 2.5rem); }
+.phone-block__lead {
+  margin-top: 1.1rem;
+  color: var(--ink-2);
+  max-width: 50ch;
+  font-size: 1.0625rem;
+}
+
+.facts { margin-top: 2rem; display: grid; gap: 1.15rem; }
+.facts li {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+}
+.facts svg { width: 18px; height: 18px; margin-top: 5px; color: var(--ink-3); }
+.facts b { font-weight: 600; }
+.facts span { color: var(--ink-2); }
+
+@media (max-width: 860px) {
+  .phone-block { grid-template-columns: 1fr; gap: 2.5rem; }
+  .phone-block__shot { order: 2; }
+}
+
+/* --- Перед установкой --------------------------------------------------
+   Единственное место на сайте, где появляется цвет, и появляется он ради
+   смысла: это предупреждение, о котором лучше прочитать до скачивания, чем
+   испугаться после.                                                       */
+
+.install {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+.install__item {
+  padding: clamp(1.35rem, 2.2vw, 1.75rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-block);
+  background: var(--surface);
+}
+.install__item dt {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+.install__item dd { margin: 0.6rem 0 0; color: var(--ink-2); font-size: 0.9375rem; }
+
+.warnbox {
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  padding: clamp(1.35rem, 2.4vw, 1.85rem);
+  border: 1px solid color-mix(in srgb, var(--warn) 34%, transparent);
+  background: var(--warn-soft);
+  border-radius: var(--r-block);
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 1rem;
+}
+.warnbox svg { width: 20px; height: 20px; color: var(--warn); margin-top: 3px; }
+.warnbox h3 { font-family: 'Unbounded', sans-serif; font-size: 1rem; }
+.warnbox p { margin-top: 0.65rem; color: var(--ink-2); font-size: 0.9375rem; max-width: 68ch; }
+.warnbox kbd {
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 9%, transparent);
+  border-radius: 5px;
+  padding: 0.1em 0.4em;
+}
+
+/* --- Итоговый призыв --------------------------------------------------- */
+
+.closing { text-align: center; }
+.closing h2 { font-size: clamp(1.9rem, 4.4vw, 3rem); max-width: 18ch; margin-inline: auto; }
+.closing p { margin: 1.25rem auto 0; color: var(--ink-2); max-width: 46ch; }
+.closing .btn { margin-top: 2.1rem; }
+.closing__note { margin-top: 1.1rem; font-size: 0.875rem; color: var(--ink-3); }
+
+/* ============================================================================
+   ГЛАВНАЯ СТРАНИЦА БРЕНДА
+   ========================================================================= */
+
+.opening { padding-block: clamp(4.5rem, 11vw, 8rem) clamp(3rem, 7vw, 5rem); }
+.opening h1 { font-size: clamp(2.2rem, 6vw, 4.2rem); max-width: 17ch; }
+.opening__lead {
+  margin-top: 1.75rem;
+  font-size: clamp(1.0625rem, 1.9vw, 1.3125rem);
+  color: var(--ink-2);
+  max-width: 54ch;
+}
+
+/* Карточка продукта. Одна, и она большая: делать из единственного продукта
+   ряд одинаковых плиток, чтобы «выглядело как каталог», — самообман. */
+.product {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  padding: clamp(1.75rem, 3.5vw, 3rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-block);
+  background: var(--surface);
+}
+.product__mark { width: 38px; height: 38px; color: var(--ink); }
+.product h2 { margin-top: 1.1rem; font-size: clamp(1.75rem, 3.4vw, 2.4rem); }
+.product__kind { margin-top: 0.5rem; color: var(--ink-3); font-size: 0.9375rem; }
+.product__text { margin-top: 1.25rem; color: var(--ink-2); max-width: 42ch; }
+.product__actions { margin-top: 1.9rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.product__shot {
+  border-radius: var(--r-image);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lift);
+}
+
+@media (max-width: 900px) {
+  .product { grid-template-columns: 1fr; }
+}
+
+/* Принципы: строки с линейками, а не карточки. Карточка нужна, когда
+   содержимое надо отделить от соседнего; здесь хватает воздуха и линии. */
+.rules { border-top: 1px solid var(--line); }
+.rules li {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(0.8rem, 4vw, 3rem);
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-bottom: 1px solid var(--line);
+}
+.rules h3 { font-size: 1.125rem; }
+.rules p { color: var(--ink-2); }
+
+@media (max-width: 760px) {
+  .rules li { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+
+/* ============================================================================
+   ТЕКСТОВАЯ СТРАНИЦА (политика конфиденциальности)
+
+   Юридический текст читают редко, но когда читают — читают внимательно.
+   Поэтому здесь узкая колонка, крупный межстрочный интервал и заголовки
+   разделов, по которым видно структуру. Раньше страница тянула чужой
+   фреймворк с постороннего сервера и была из другого проекта по виду.
+   ========================================================================= */
+
+.prose { max-width: 74ch; }
+.prose h1 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); margin-bottom: 2rem; }
+.prose h2 {
+  font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
+  margin-top: 2.5rem;
+  margin-bottom: 0.9rem;
+}
+.prose p { color: var(--ink-2); margin-bottom: 1rem; }
+.prose p:last-child { margin-bottom: 0; }

@@ -1,283 +1,197 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clarify — приложение-планировщик задач</title>
-  <meta name="description" content="Clarify — простое приложение для планирования задач, которое помогает навести порядок в делах без лишней сложности.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VANTRA — небольшая студия приложений</title>
+<meta name="description" content="Студия VANTRA. Сейчас один продукт: Clarify, планировщик задач для Windows и телефона. Бесплатно, без подписок.">
 
-  <meta property="og:title" content="Clarify — приложение-планировщик задач">
-  <meta property="og:description" content="Простое приложение для планирования задач, которое помогает навести порядок в делах без лишней сложности.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/logo.png">
+<link rel="canonical" href="https://vantra-labs.github.io/">
 
-  <!-- Favicon (generated from assets/logo.png, resize only) -->
-  <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/favicon-512.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/favicon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vantra-labs.github.io/">
+<meta property="og:title" content="VANTRA — небольшая студия приложений">
+<meta property="og:description" content="Сейчас один продукт: Clarify, планировщик задач для Windows и телефона.">
+<meta property="og:image" content="https://vantra-labs.github.io/assets/og/vantra-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
 
-  <!-- Preload critical font weight for <h1> (Unbounded 700, cyrillic subset —
-       the page is lang="ru", cyrillic glyphs are what the h1 will render) -->
-  <link rel="preload" href="assets/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/favicon-180.png">
 
-  <link rel="stylesheet" href="css/style.css">
+<link rel="preload" href="assets/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/pages.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Перейти к содержимому</a>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
 
-  <header class="header">
-    <div class="header__inner">
-      <a class="header__brand" href="#main" aria-label="Clarify — на главную">
-        <img class="header__logo" src="assets/logo.png" alt="" width="36" height="36">
-        <span class="header__wordmark">Clarify</span>
-      </a>
+<header class="header" id="header">
+  <div class="header__inner">
+    <a class="brand" href="/">
+      <svg class="brand__mark" viewBox="0 0 111 111" fill="currentColor" aria-hidden="true">
+        <path d="M0 43 L0 11 L32 11 L32 22 L11 22 L11 43 Z"/>
+        <path d="M111 32 L111 0 L79 0 L79 11 L100 11 L100 32 Z"/>
+        <path d="M0 79 L0 111 L32 111 L32 100 L11 100 L11 79 Z"/>
+        <path d="M100 79 L100 111 L68 111 L68 100 L89 100 L89 79 Z"/>
+      </svg>
+      VANTRA
+    </a>
 
-      <button class="header__toggle" type="button"
-              aria-expanded="false" aria-controls="primary-nav"
-              aria-label="Открыть меню">
-        <span class="header__toggle-bar" aria-hidden="true"></span>
-        <span class="header__toggle-bar" aria-hidden="true"></span>
-        <span class="header__toggle-bar" aria-hidden="true"></span>
-      </button>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
 
-      <nav class="header__nav" id="primary-nav" aria-label="Основная">
-        <ul class="header__nav-list">
-          <li><a class="header__nav-link" href="#benefits">Преимущества</a></li>
-          <li><a class="header__nav-link" href="#how-it-works">Как это работает</a></li>
-          <li><a class="header__nav-link" href="#testimonials">Отзывы</a></li>
-        </ul>
-        <a class="btn btn--primary header__cta" href="https://github.com/vantra-labs/clarify/releases/latest/download/Clarify_Setup.exe" download>
-          <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Скачать для Windows
-        </a>
-      </nav>
+    <nav class="nav" id="nav" aria-label="Основная">
+      <a href="#produkty">Продукты</a>
+      <a href="#podhod">Как я работаю</a>
+      <a class="btn btn--primary" href="clarify/">Clarify</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="opening">
+    <div class="shell">
+      <h1>Делаю приложения, которыми пользуюсь сам</h1>
+      <p class="opening__lead">
+        VANTRA — это один человек и то, что он успевает довести до конца.
+        Сейчас продукт один: планировщик задач Clarify. Он собран, работает и
+        им можно пользоваться прямо сегодня, а не «скоро».
+      </p>
     </div>
-  </header>
+  </section>
 
-  <main id="main">
-    <section class="hero" id="hero">
-      <div class="hero__inner">
-        <div class="hero__content">
-          <h1 class="hero__title">Из хаоса дел — в понятный план на день</h1>
-          <p class="hero__subtitle">
-            Clarify собирает все ваши задачи, встречи и напоминания в одном месте
-            и подсказывает, за что взяться прямо сейчас. Ничего не потеряется и не забудется.
+  <section class="section section--tight" id="produkty">
+    <div class="shell">
+      <article class="product reveal">
+        <div>
+          <svg class="product__mark" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+            <path d="M16 8.5 L23 8.5 A4 4 0 0 1 27 12.5 L27 51.5 A4 4 0 0 1 23 55.5 L16 55.5 A12 12 0 0 1 4 43.5 L4 20.5 A12 12 0 0 1 16 8.5 Z" transform="translate(0 -6)"/>
+            <path d="M41 8.5 L48 8.5 A12 12 0 0 1 60 20.5 L60 43.5 A12 12 0 0 1 48 55.5 L41 55.5 A4 4 0 0 1 37 51.5 L37 12.5 A4 4 0 0 1 41 8.5 Z" transform="translate(0 6)"/>
+          </svg>
+          <h2>Clarify</h2>
+          <p class="product__kind">Планировщик задач. Windows и телефон</p>
+          <p class="product__text">
+            Пишете или говорите обычную фразу, а дата, время и метка встают по
+            местам сами. Задачи общие между компьютером и телефоном, работают
+            без интернета и принимаются телеграм-ботом.
           </p>
-          <div class="hero__cta-group">
-            <a class="btn btn--primary hero__cta" href="https://github.com/vantra-labs/clarify/releases/latest/download/Clarify_Setup.exe" download>
-              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <div class="product__actions">
+            <a class="btn btn--primary" href="clarify/">Подробно о Clarify</a>
+            <a class="btn btn--ghost" href="https://github.com/vantra-labs/clarify/releases/latest/download/Clarify_Setup.exe">
               Скачать для Windows
             </a>
-            <a class="hero__secondary" href="https://vantra-labs.github.io/">О проекте</a>
           </div>
         </div>
 
-        <div class="hero__visual">
-          <span class="hero__shape hero__shape--1" aria-hidden="true"></span>
-          <span class="hero__shape hero__shape--2" aria-hidden="true"></span>
-          <span class="hero__shape hero__shape--3" aria-hidden="true"></span>
-          <div class="hero__frame">
-            <picture>
-              <source
-                type="image/webp"
-                srcset="assets/screenshot/screenshot-640.webp 640w,
-                        assets/screenshot/screenshot-1280.webp 1280w,
-                        assets/screenshot/screenshot-1920.webp 1920w"
-                sizes="(min-width: 1024px) 52vw, 92vw">
-              <img
-                class="hero__image"
-                src="assets/screenshot/screenshot-1920.jpg"
-                srcset="assets/screenshot/screenshot-1920.jpg 1920w"
-                sizes="(min-width: 1024px) 52vw, 92vw"
-                width="1920" height="1042"
-                fetchpriority="high" decoding="async"
-                alt="Приложение Clarify: экран «Календарь» со списком задач на неделю, аккуратно разложенных по дням.">
-            </picture>
-          </div>
+        <div class="product__shot">
+          <!-- Снимок идёт за темой посетителя, как и на странице продукта. -->
+          <picture>
+            <source media="(prefers-color-scheme: light)" type="image/webp"
+                    srcset="assets/shots/light-760.webp 760w,
+                            assets/shots/light-1100.webp 1100w,
+                            assets/shots/light-1600.webp 1600w"
+                    sizes="(min-width: 900px) 52vw, 92vw">
+            <source type="image/webp"
+                    srcset="assets/shots/list-760.webp 760w,
+                            assets/shots/list-1100.webp 1100w,
+                            assets/shots/list-1600.webp 1600w"
+                    sizes="(min-width: 900px) 52vw, 92vw">
+            <img src="assets/shots/list-1100.jpg"
+                 width="1600" height="1000"
+                 fetchpriority="high" decoding="async"
+                 alt="Окно Clarify со списком задач: срок, метка и подсветка по важности у каждой строки.">
+          </picture>
         </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="podhod">
+    <div class="shell">
+      <div class="section-head">
+        <h2>Как я работаю</h2>
+        <p>Три правила, по которым проще понять, чего от этих приложений ждать, а чего нет.</p>
       </div>
-    </section>
 
-    <section class="trust-strip" id="trust-strip">
-      <div class="trust-strip__inner">
-        <p class="trust-strip__text">Мы в бете — будем рады, если вы одними из первых попробуете Clarify и расскажете, что получилось.</p>
-      </div>
-    </section>
+      <ul class="rules">
+        <li>
+          <h3>Доделываю до конца</h3>
+          <p>
+            Три функции, которые работают всегда, полезнее десяти, которые
+            работают, если повезёт. Поэтому продукт пока один, и на его
+            странице нет ни слова про то, чего в нём ещё нет.
+          </p>
+        </li>
+        <li>
+          <h3>Неудобное говорю первым</h3>
+          <p>
+            Windows ругается на установщик, потому что у него нет платной
+            подписи. Об этом написано прямо на странице Clarify, до кнопки
+            скачивания, а не обнаруживается уже после неё.
+          </p>
+        </li>
+        <li>
+          <h3>Не беру денег, пока не за что</h3>
+          <p>
+            Clarify бесплатен: подписки нет, оплаты внутри нет, рекламы нет.
+            Если однажды появится платная часть, я скажу об этом заранее и
+            прямо, а не подменю условия по-тихому.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-    <section class="benefits" id="benefits" aria-labelledby="benefits-heading">
-      <div class="benefits__inner">
-        <h2 class="benefits__heading" id="benefits-heading">Что вы получаете</h2>
+</main>
 
-        <div class="benefits__grid">
-          <article class="benefits__card benefits__card--wide reveal">
-            <span class="benefits__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                <path d="M12 3 21 8 12 13 3 8Z"/>
-                <path d="M3 12 12 17 21 12"/>
-                <path d="M3 16 12 21 21 16"/>
-              </svg>
-            </span>
-            <h3 class="benefits__title">Всё в одном месте</h3>
-            <p class="benefits__text">Задачи, встречи и напоминания собираются в одном списке — не нужно держать всё в голове или переключаться между приложениями.</p>
-          </article>
-
-          <article class="benefits__card benefits__card--large reveal">
-            <span class="benefits__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                <path d="M4 6h9"/>
-                <path d="M4 12h6"/>
-                <path d="M4 18h9"/>
-                <path d="M18.5 11l1 2.3 2.3 1-2.3 1-1 2.3-1-2.3-2.3-1 2.3-1Z"/>
-              </svg>
-            </span>
-            <h3 class="benefits__title">Подсказывает, что делать первым</h3>
-            <p class="benefits__text">Clarify смотрит на ваши дела и подсказывает, за что взяться в первую очередь, если непонятно, с чего начать.</p>
-          </article>
-
-          <article class="benefits__card reveal">
-            <span class="benefits__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                <path d="M6 17v-5a6 6 0 0 1 12 0v5"/>
-                <path d="M4 17h16"/>
-                <path d="M10 20a2 2 0 0 0 4 0"/>
-              </svg>
-            </span>
-            <h3 class="benefits__title">Ничего не теряется</h3>
-            <p class="benefits__text">Задача остаётся на виду, пока вы не отметите её сделанной, — забыть о ней не получится.</p>
-          </article>
-
-          <article class="benefits__card reveal">
-            <span class="benefits__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                <rect x="3" y="5" width="18" height="16" rx="2"/>
-                <path d="M3 10h18"/>
-                <path d="M8 3v4"/>
-                <path d="M16 3v4"/>
-              </svg>
-            </span>
-            <h3 class="benefits__title">Простой и понятный список</h3>
-            <p class="benefits__text">Никаких сложных настроек и разделов — только понятный список дел, где сразу видно, что делать дальше.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="how-it-works" id="how-it-works" aria-labelledby="how-it-works-heading">
-      <div class="how-it-works__inner">
-        <h2 class="how-it-works__heading" id="how-it-works-heading">Как это работает</h2>
-
-        <ol class="how-it-works__list">
-          <li class="how-it-works__step reveal">
-            <span class="how-it-works__number" aria-hidden="true">01</span>
-            <h3 class="how-it-works__title">Добавьте дело</h3>
-            <p class="how-it-works__text">Запишите задачу за пару секунд — как в обычной заметке, без лишних полей и настроек.</p>
-          </li>
-          <li class="how-it-works__step reveal">
-            <span class="how-it-works__number" aria-hidden="true">02</span>
-            <h3 class="how-it-works__title">Clarify раскладывает всё по местам</h3>
-            <p class="how-it-works__text">Приложение само расставляет приоритеты и распределяет дела по дням, пока вы этим не занимаетесь.</p>
-          </li>
-          <li class="how-it-works__step reveal">
-            <span class="how-it-works__number" aria-hidden="true">03</span>
-            <h3 class="how-it-works__title">Просто следуйте плану</h3>
-            <p class="how-it-works__text">Открываете день и сразу видите, за что браться в первую очередь — без раздумий и лишнего стресса.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-heading">
-      <div class="testimonials__inner">
-        <h2 class="testimonials__heading" id="testimonials-heading">Отзывы бета-тестеров</h2>
-        <p class="testimonials__note">Реальных отзывов пока немного, поэтому эти истории — иллюстративные примеры того, для каких повседневных дел придумывался Clarify. Настоящие отзывы появятся здесь, когда наберётся больше пользователей.</p>
-
-        <div class="testimonials__grid">
-          <article class="testimonials__card" tabindex="0">
-            <span class="testimonials__avatar testimonials__avatar--navy" aria-hidden="true">М</span>
-            <blockquote class="testimonials__quote">
-              <p>Раньше дела по дому и рабочие встречи жили в трёх разных заметках. Теперь всё в одном списке — не приходится листать несколько экранов, чтобы вспомнить, что нужно сделать сегодня.</p>
-            </blockquote>
-            <p class="testimonials__author">Марина, бета-тестер</p>
-          </article>
-
-          <article class="testimonials__card" tabindex="0">
-            <span class="testimonials__avatar testimonials__avatar--blue-700" aria-hidden="true">И</span>
-            <blockquote class="testimonials__quote">
-              <p>Утром просто открываю Clarify — приложение само подсказывает, за что взяться в первую очередь, и не приходится решать это на голодный желудок.</p>
-            </blockquote>
-            <p class="testimonials__author">Игорь, бета-тестер</p>
-          </article>
-
-          <article class="testimonials__card" tabindex="0">
-            <span class="testimonials__avatar testimonials__avatar--blue-500" aria-hidden="true">А</span>
-            <blockquote class="testimonials__quote">
-              <p>Задача про оплату счёта провисела на виду три дня, пока я её не закрыл, — впервые за долгое время ничего не просрочил.</p>
-            </blockquote>
-            <p class="testimonials__author">Алексей, бета-тестер</p>
-          </article>
-
-          <article class="testimonials__card" tabindex="0">
-            <span class="testimonials__avatar testimonials__avatar--navy" aria-hidden="true">С</span>
-            <blockquote class="testimonials__quote">
-              <p>Я не люблю сложные приложения с кучей настроек. Тут ничего не пришлось настраивать — просто начала записывать дела, как в обычном блокноте.</p>
-            </blockquote>
-            <p class="testimonials__author">Света, бета-тестер</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" id="cta" aria-labelledby="cta-heading">
-      <div class="cta__inner">
-        <h2 class="cta__heading" id="cta-heading">Пора навести порядок в делах</h2>
-        <a class="btn btn--primary cta__button" href="https://github.com/vantra-labs/clarify/releases/latest/download/Clarify_Setup.exe" download>
-          <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Скачать для Windows
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div class="footer__about">
+        <a class="brand" href="/">
+          <svg class="brand__mark" viewBox="0 0 111 111" fill="currentColor" aria-hidden="true">
+            <path d="M0 43 L0 11 L32 11 L32 22 L11 22 L11 43 Z"/>
+            <path d="M111 32 L111 0 L79 0 L79 11 L100 11 L100 32 Z"/>
+            <path d="M0 79 L0 111 L32 111 L32 100 L11 100 L11 79 Z"/>
+            <path d="M100 79 L100 111 L68 111 L68 100 L89 100 L89 79 Z"/>
+          </svg>
+          VANTRA
         </a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__top">
-        <div class="footer__about">
-          <div class="footer__brand">
-            <img class="footer__logo" src="assets/logo.png" alt="" width="36" height="36">
-            <span class="footer__wordmark">Clarify</span>
-          </div>
-          <p class="footer__description">Простое приложение-планировщик задач, которое помогает навести порядок в делах и не упускать важное.</p>
-        </div>
-
-        <div class="footer__nav-group">
-          <nav class="footer__nav" aria-label="Футер">
-            <ul class="footer__nav-list">
-              <li><a class="footer__nav-link" href="#benefits">Преимущества</a></li>
-              <li><a class="footer__nav-link" href="#how-it-works">Как это работает</a></li>
-              <li><a class="footer__nav-link" href="#testimonials">Отзывы</a></li>
-            </ul>
-          </nav>
-
-          <ul class="footer__links">
-            <li><a class="footer__link" href="https://t.me/ClarifyPlan/5" target="_blank" rel="noopener noreferrer">Telegram-канал</a></li>
-            <li><a class="footer__link" href="https://vantra-labs.github.io/">О проекте</a></li>
-          </ul>
-
-          <div class="footer__contacts">
-            <p class="footer__contacts-heading">Контакты</p>
-            <p class="footer__description">Напишите нам в Telegram-канале Clarify: <a class="footer__link" href="https://t.me/ClarifyPlan/5" target="_blank" rel="noopener noreferrer">t.me/ClarifyPlan</a></p>
-          </div>
-        </div>
+        <p>Небольшая студия приложений. Пишу по одному и довожу до рабочего состояния.</p>
       </div>
 
-      <div class="footer__bottom">
-        <p class="footer__copyright">© 2026 Clarify. Все права защищены.</p>
-        <a class="footer__privacy-link" href="privacy.html" target="_blank" rel="noopener noreferrer">Политика конфиденциальности</a>
+      <div>
+        <h3>Продукты</h3>
+        <ul>
+          <li><a href="clarify/">Clarify</a></li>
+          <li><a href="https://clarify-frontend.onrender.com" target="_blank" rel="noopener">Clarify в браузере</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Связь</h3>
+        <ul>
+          <li><a href="https://t.me/ClarifyPlan" target="_blank" rel="noopener">Канал в Telegram</a></li>
+          <li><a href="https://t.me/ClarifyHelp_bot" target="_blank" rel="noopener">Написать в поддержку</a></li>
+        </ul>
       </div>
     </div>
-  </footer>
 
-  <script src="js/main.js" defer></script>
+    <div class="footer__bottom">
+      <span>© 2026 VANTRA</span>
+      <a href="privacy.html">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js" defer></script>
 </body>
 </html>
