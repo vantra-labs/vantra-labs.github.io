@@ -6,6 +6,25 @@
 <title>VANTRA — небольшая студия приложений</title>
 <meta name="description" content="Студия VANTRA. Сейчас один продукт: Clarify, планировщик задач для Windows и телефона. Бесплатно, без подписок.">
 
+<script>
+// Возврат из Яндекс OAuth для веб-версии приложения.
+//
+// Приложение живёт в /app/, но redirect_uri у Яндекса — корень домена: он
+// считается из Uri.base.origin, в котором пути нет вовсе, и зарегистрирован в
+// настройках приложения Яндекса именно как корень. Поэтому человек с кодом
+// прилетает сюда, на витрину, где этот код никому не нужен. Перебрасываем его
+// вместе с кодом туда, где его ждут.
+//
+// Стоит первым делом в head, до загрузки стилей и шрифтов: чем меньше успеет
+// нарисоваться постороннего, тем незаметнее переход.
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  if (params.has('code')) {
+    window.location.replace('/app/' + window.location.search);
+  }
+})();
+</script>
+
 <link rel="canonical" href="https://vantra-labs.github.io/">
 
 <meta property="og:type" content="website">
