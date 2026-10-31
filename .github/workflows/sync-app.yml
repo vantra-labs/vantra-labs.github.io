@@ -1,0 +1,52 @@
+name: Обновить PWA
+
+# Забирает свежую сборку веб-версии Clarify из ветки web-dist репозитория
+# vantra-labs/clarify (её собирает воркфлоу «Сборка PWA для сайта» после
+# каждого слияния в master) и кладёт в папку app/. Политика конфиденциальности
+# сайта — та же, что внутри приложения: копируется из сборки в корень.
+#
+# Ничего не делает, если сборка не поменялась.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-app
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Забрать сборку
+        run: git clone -q --depth 1 -b web-dist https://github.com/vantra-labs/clarify.git /tmp/web
+
+      - name: Сравнить
+        id: diff
+        run: |
+          new=$(python3 -c "import json;print(json.load(open('/tmp/web/clarify-build.json'))['commit'])")
+          old=$(python3 -c "import json;print(json.load(open('app/clarify-build.json'))['commit'])" 2>/dev/null || echo none)
+          echo "new=$new" >> "$GITHUB_OUTPUT"
+          if [ "$new" = "$old" ]; then echo "::notice::PWA уже на ${new::7}"; echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Обновить app/
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          rsync -a --delete --exclude .git /tmp/web/ app/
+          cp app/privacy.html privacy.html
+          git add -A app privacy.html
+          if git diff --cached --quiet; then echo "::notice::Изменений нет"; exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -q -m "Веб-версия Clarify из ${NEW::7}"
+          git push -q
+          echo "::notice::PWA обновлена до ${NEW::7}"
+        env:
+          NEW: ${{ steps.diff.outputs.new }}
