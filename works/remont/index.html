@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>РемЛиния — ремонт квартир под ключ с фиксированной сметой</title>
+<meta name="description" content="Ремонт квартир под ключ. Смета фиксируется в договоре, гарантия 3 года, фотоотчёт каждый день.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#111214;--panel:#1b1c20;--ink:#f4f4f2;--muted:#9a9ca3;--y:#ffd23f;--line:#2a2c31}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:Unbounded,sans-serif;line-height:1.08;font-weight:700}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.logo{font-family:Unbounded;font-weight:700;font-size:20px}
+.logo b{color:var(--y)}
+.phone{font-weight:700}
+.btn{display:inline-block;background:var(--y);color:#111;padding:16px 28px;border-radius:12px;font-weight:700;border:0;cursor:pointer;font-size:16px}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;padding:72px 0;align-items:center}
+.tag{display:inline-block;border:1px solid var(--line);padding:6px 14px;border-radius:999px;color:var(--muted);font-size:14px;margin-bottom:22px}
+.hero h1{font-size:clamp(30px,4.2vw,56px);overflow-wrap:anywhere}
+.hero h1 span{color:var(--y)}
+.hero p{color:var(--muted);font-size:19px;margin:22px 0 34px;max-width:560px}
+.checks{display:flex;gap:22px;flex-wrap:wrap;margin-top:28px;color:var(--muted);font-size:15px}
+.checks span:before{content:"✓ ";color:var(--y);font-weight:700}
+.plan{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:28px 28px 84px;position:relative;overflow:hidden}
+.plan svg{width:100%;height:auto}
+.plan .lbl{position:absolute;left:28px;bottom:24px;background:var(--y);color:#111;font-weight:700;padding:8px 14px;border-radius:10px;font-size:14px}
+section{padding:80px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(24px,3.2vw,42px);margin-bottom:40px;max-width:760px;overflow-wrap:anywhere}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.p{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:30px}
+.p.hot{border-color:var(--y)}
+.p h3{font-size:20px;margin-bottom:8px}
+.p .sum{font-family:Unbounded;font-size:34px;margin:16px 0}
+.p .sum small{font-size:15px;color:var(--muted);font-family:Inter}
+.p ul{list-style:none;color:var(--muted);display:grid;gap:8px;font-size:15px}
+.p li:before{content:"— "}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+.st{border-top:3px solid var(--y);padding-top:18px}
+.st:before{counter-increment:s;content:"0" counter(s);font-family:Unbounded;color:var(--y);font-size:14px}
+.st h3{font-size:18px;margin:10px 0 8px}
+.st p{color:var(--muted);font-size:15px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:40px;background:var(--y);color:#111;border-radius:28px;padding:52px}
+.calc h2{margin-bottom:16px}
+.calc p{font-size:17px}
+.calc form{display:grid;gap:12px}
+.calc input,.calc select{padding:16px;border-radius:12px;border:0;font:inherit;width:100%}
+.calc .btn{background:#111;color:var(--y)}
+.out{font-family:Unbounded;font-size:28px;margin-top:20px}
+footer{padding:36px 0 60px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--line)}
+@media(max-width:520px){header .btn{display:none}.steps{grid-template-columns:1fr}.btn{padding:15px 20px}}
+@media(max-width:900px){.hero,.calc{grid-template-columns:1fr}.prices{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.calc{padding:30px}.phone{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="logo">Рем<b>Линия</b></div><a class="phone" href="#calc">+7 (900) 000-00-00</a><a class="btn" href="#calc">Рассчитать</a></header>
+
+<div class="hero">
+  <div>
+    <span class="tag">Москва и область · с 2016 года</span>
+    <h1>Ремонт квартир с <span>фиксированной</span> сметой</h1>
+    <p>Цена прописывается в договоре и не растёт по ходу работ. Фотоотчёт каждый вечер, оплата по этапам.</p>
+    <a class="btn" href="#calc">Рассчитать стоимость за 1 минуту</a>
+    <div class="checks"><span>Гарантия 3 года</span><span>Свои бригады</span><span>Закупка материалов</span></div>
+  </div>
+  <div class="plan">
+    <svg viewBox="0 0 300 260" fill="none" stroke="#ffd23f" stroke-width="2">
+      <rect x="10" y="10" width="280" height="240" rx="4"/>
+      <path d="M10 120h120M130 10v170M130 180h60M190 120v130M190 120h100"/>
+      <path d="M60 120v-20M60 100a20 20 0 0 1 20 20" opacity=".6"/>
+      <text x="40" y="70" fill="#9a9ca3" stroke="none" font-size="12" font-family="Inter">Кухня 12 м²</text>
+      <text x="180" y="70" fill="#9a9ca3" stroke="none" font-size="12" font-family="Inter">Спальня 16 м²</text>
+      <text x="40" y="190" fill="#9a9ca3" stroke="none" font-size="12" font-family="Inter">Гостиная 21 м²</text>
+      <text x="215" y="190" fill="#9a9ca3" stroke="none" font-size="12" font-family="Inter">С/у 5 м²</text>
+    </svg>
+    <span class="lbl">Смета — 0 сюрпризов</span>
+  </div>
+</div>
+
+<section>
+  <h2>Три формата ремонта — выберите свой</h2>
+  <div class="prices">
+    <div class="p"><h3>Косметический</h3><div class="sum">от 4 500 ₽<small> / м²</small></div><ul><li>Обои или покраска стен</li><li>Ламинат, плинтус</li><li>Замена розеток</li><li>Срок от 3 недель</li></ul></div>
+    <div class="p hot"><h3>Капитальный</h3><div class="sum">от 9 800 ₽<small> / м²</small></div><ul><li>Выравнивание стен и пола</li><li>Новая электрика и сантехника</li><li>Плитка в санузле</li><li>Срок от 2 месяцев</li></ul></div>
+    <div class="p"><h3>Дизайнерский</h3><div class="sum">от 15 000 ₽<small> / м²</small></div><ul><li>Работа по дизайн-проекту</li><li>Сложные потолки и свет</li><li>Авторский надзор</li><li>Срок от 3 месяцев</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>Как идёт работа</h2>
+  <div class="steps">
+    <div class="st"><h3>Замер</h3><p>Бесплатно выезжаем, снимаем размеры, обсуждаем пожелания.</p></div>
+    <div class="st"><h3>Смета</h3><p>Через 2 дня присылаем подробную смету по каждой позиции.</p></div>
+    <div class="st"><h3>Договор</h3><p>Фиксируем цену и сроки. Оплата по этапам, не вперёд.</p></div>
+    <div class="st"><h3>Ремонт</h3><p>Каждый вечер — фото и короткий отчёт в мессенджер.</p></div>
+  </div>
+</section>
+
+<section id="calc" style="border:0">
+  <div class="calc">
+    <div><h2>Сколько будет стоить ваш ремонт?</h2><p>Укажите площадь и тип ремонта — покажем примерную сумму. Точную назовём после замера.</p><div class="out" id="out">≈ 0 ₽</div></div>
+    <form oninput="calcIt()" onsubmit="event.preventDefault();this.querySelector('button').textContent='Перезвоним в течение часа ✓'">
+      <input id="area" type="number" min="10" value="54" placeholder="Площадь, м²">
+      <select id="kind"><option value="4500">Косметический</option><option value="9800" selected>Капитальный</option><option value="15000">Дизайнерский</option></select>
+      <input placeholder="Телефон" type="tel" required>
+      <button class="btn" type="submit">Записаться на бесплатный замер</button>
+    </form>
+  </div>
+</section>
+
+<footer><span>© РемЛиния</span><span>Демо-проект для портфолио, компания вымышлена</span></footer>
+</div>
+<script>
+function calcIt(){const a=+document.getElementById('area').value||0,k=+document.getElementById('kind').value;document.getElementById('out').textContent='≈ '+(a*k).toLocaleString('ru-RU')+' ₽'}
+calcIt();
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дента Плюс — стоматология без боли и очередей</title>
+<meta name="description" content="Семейная стоматология. Лечение, имплантация, гигиена. Бесплатная консультация и план лечения с фиксированной ценой.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--soft:#f1f7fb;--ink:#0f2a3d;--muted:#5d7385;--b:#1a8fd6;--b2:#0e6fb0;--mint:#5ed3b5;--line:#e1ebf2}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 "Golos Text",system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-weight:800;line-height:1.1;letter-spacing:-.015em}
+.top{background:var(--ink);color:#cfe3f1;font-size:14px}
+.top .wrap{display:flex;justify-content:space-between;padding:10px 24px;gap:16px;flex-wrap:wrap}
+header .wrap{display:flex;justify-content:space-between;align-items:center;padding:20px 24px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px}
+.logo svg{width:34px;height:34px}
+nav{display:flex;gap:26px;font-weight:500;color:var(--muted)}
+.btn{display:inline-block;background:var(--b);color:#fff;padding:15px 26px;border-radius:14px;font-weight:700;border:0;cursor:pointer;font-size:16px}
+.btn:hover{background:var(--b2)}
+.btn.ghost{background:#fff;color:var(--b);border:1.5px solid var(--b)}
+.hero{background:linear-gradient(180deg,var(--soft),#fff)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:64px 24px 80px}
+.pill{display:inline-flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);padding:7px 14px;border-radius:999px;font-size:14px;color:var(--muted);margin-bottom:22px}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.hero h1{font-size:clamp(38px,5.4vw,66px)}
+.hero h1 span{color:var(--b)}
+.hero p{color:var(--muted);font-size:19px;margin:22px 0 30px;max-width:540px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.visual{aspect-ratio:1/1;border-radius:40px;background:linear-gradient(145deg,#d8eefb,#b9e2f6);display:grid;place-items:center;position:relative}
+.visual svg{width:55%}
+.card{position:absolute;background:#fff;border-radius:18px;padding:14px 18px;box-shadow:0 18px 40px -18px #0f2a3d55;font-size:14px}
+.card b{display:block;font-size:20px}
+.c1{left:-18px;top:18%}.c2{right:-14px;bottom:16%}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:-40px}
+.trust div{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+.trust b{font-size:28px;color:var(--b);display:block}
+.trust span{color:var(--muted);font-size:15px}
+section{padding:84px 0}
+h2{font-size:clamp(30px,3.6vw,46px);margin-bottom:34px}
+.serv{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.s{border:1px solid var(--line);border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:8px}
+.s h3{font-size:21px}
+.s p{color:var(--muted);font-size:15px;flex:1}
+.s .pr{font-weight:800;font-size:19px;color:var(--b)}
+.how{background:var(--soft);border-radius:36px;padding:56px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.st b{width:44px;height:44px;border-radius:12px;background:var(--b);color:#fff;display:grid;place-items:center;font-size:18px;margin-bottom:14px}
+.st h3{font-size:19px;margin-bottom:6px}
+.st p{color:var(--muted);font-size:15px}
+.book{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.book p{color:var(--muted);font-size:18px;margin-top:-16px}
+form{background:var(--ink);border-radius:32px;padding:40px;display:grid;gap:12px;color:#fff}
+form h3{font-size:26px;margin-bottom:6px}
+input,select{padding:15px 18px;border-radius:12px;border:0;font:inherit;width:100%}
+form small{color:#9fb6c8;font-size:13px}
+footer{padding:40px 0 60px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--line)}
+@media(max-width:900px){.hero .wrap,.book{grid-template-columns:1fr}.serv{grid-template-columns:1fr}.trust,.steps{grid-template-columns:1fr 1fr}nav{display:none}header .btn{display:none}.how,form{padding:30px}.trust{margin-top:0}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap"><span>ул. Примерная, 00 · м. Центральная</span><span>Ежедневно 9:00 — 21:00</span></div></div>
+<header><div class="wrap">
+  <div class="logo"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="12" fill="#1a8fd6"/><path d="M13 12c3-2 5 0 7 0s4-2 7 0c3 2 2 8 0 12-1 3-1 6-3 6s-2-5-4-5-2 5-4 5-2-3-3-6c-2-4-3-10 0-12z" fill="#fff"/></svg>Дента Плюс</div>
+  <nav><a href="#serv">Услуги</a><a href="#how">Как проходит приём</a><a href="#book">Запись</a></nav>
+  <a class="btn" href="#book">Записаться</a>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <div>
+    <span class="pill"><i></i>Есть окна на этой неделе</span>
+    <h1>Лечим зубы <span>без боли</span> и сюрпризов в чеке</h1>
+    <p>Бесплатная консультация и план лечения с фиксированной ценой. Современная анестезия и цифровой снимок прямо в кабинете.</p>
+    <div class="cta"><a class="btn" href="#book">Записаться на консультацию</a><a class="btn ghost" href="#serv">Цены на услуги</a></div>
+  </div>
+  <div class="visual">
+    <svg viewBox="0 0 100 110"><path d="M22 10c10-8 19-2 28-2s18-6 28 2c10 9 6 30 1 44-4 12-5 46-14 46-8 0-6-30-15-30s-7 30-15 30c-9 0-10-34-14-46-5-14-9-35 1-44z" fill="#fff" stroke="#1a8fd6" stroke-width="3"/><path d="M34 26c6-3 10 0 16 0" stroke="#5ed3b5" stroke-width="4" stroke-linecap="round" fill="none"/></svg>
+    <div class="card c1"><b>0 ₽</b>консультация и план</div>
+    <div class="card c2"><b>до 5 лет</b>гарантия на лечение</div>
+  </div>
+</div></div>
+
+<div class="wrap">
+  <div class="trust">
+    <div><b>12 лет</b><span>работаем в районе</span></div>
+    <div><b>9</b><span>врачей в команде</span></div>
+    <div><b>30 мин</b><span>средний приём без ожидания</span></div>
+    <div><b>Рассрочка</b><span>0% на имплантацию</span></div>
+  </div>
+
+  <section id="serv">
+    <h2>Услуги и цены</h2>
+    <div class="serv">
+      <div class="s"><h3>Лечение кариеса</h3><p>Светоотверждаемая пломба, анестезия включена</p><span class="pr">от 4 200 ₽</span></div>
+      <div class="s"><h3>Профгигиена</h3><p>Ультразвук, Air Flow, полировка и фторирование</p><span class="pr">от 5 500 ₽</span></div>
+      <div class="s"><h3>Имплантация</h3><p>Имплант под ключ с коронкой, рассрочка без переплаты</p><span class="pr">от 38 000 ₽</span></div>
+      <div class="s"><h3>Отбеливание</h3><p>Кабинетное отбеливание за один визит</p><span class="pr">от 14 000 ₽</span></div>
+      <div class="s"><h3>Детская стоматология</h3><p>Врач, который умеет договориться с ребёнком</p><span class="pr">от 2 500 ₽</span></div>
+      <div class="s"><h3>Брекеты и элайнеры</h3><p>Консультация ортодонта и 3D-план результата</p><span class="pr">от 65 000 ₽</span></div>
+    </div>
+  </section>
+
+  <div class="how" id="how">
+    <h2>Как проходит первый приём</h2>
+    <div class="steps">
+      <div class="st"><b>1</b><h3>Осмотр</h3><p>Врач смотрит зубы и делает цифровой снимок прямо в кабинете.</p></div>
+      <div class="st"><b>2</b><h3>План лечения</h3><p>Объясняем, что нужно сделать срочно, а что может подождать.</p></div>
+      <div class="st"><b>3</b><h3>Цена</h3><p>Фиксируем стоимость в плане. Она не меняется по ходу лечения.</p></div>
+      <div class="st"><b>4</b><h3>Лечение</h3><p>Начинаем в тот же день или в удобное вам время.</p></div>
+    </div>
+  </div>
+
+  <section id="book">
+    <div class="book">
+      <div><h2>Запишитесь на бесплатную консультацию</h2><p>Администратор перезвонит в течение 15 минут и подберёт удобное время.</p></div>
+      <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Заявка принята ✓'">
+        <h3>Запись на приём</h3>
+        <input placeholder="Ваше имя" required>
+        <input placeholder="Телефон" type="tel" required>
+        <select><option>Консультация</option><option>Лечение</option><option>Гигиена</option><option>Имплантация</option></select>
+        <button class="btn" type="submit">Записаться</button>
+        <small>Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</small>
+      </form>
+    </div>
+  </section>
+
+  <footer><span>© Дента Плюс</span><span>Демо-проект для портфолио, клиника вымышлена. Имеются противопоказания, необходима консультация специалиста.</span></footer>
+</div>
+</body>
+</html>

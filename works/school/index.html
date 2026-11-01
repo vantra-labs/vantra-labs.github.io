@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speakly — разговорный английский за 3 месяца</title>
+<meta name="description" content="Онлайн-школа разговорного английского. Занятия в мини-группах до 4 человек, первый урок бесплатно.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfaff;--ink:#17123a;--muted:#6b6790;--v:#5b3df5;--lime:#c8f560;--pink:#ff8fb8;--card:#fff;--line:#e8e5f7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 Onest,system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-weight:800;line-height:1.05;letter-spacing:-.02em}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.logo{font-weight:800;font-size:24px}
+.logo span{background:var(--lime);padding:0 8px;border-radius:8px;margin-left:2px}
+nav{display:flex;gap:28px;font-weight:500}
+.btn{display:inline-block;background:var(--v);color:#fff;padding:16px 28px;border-radius:16px;font-weight:700;border:0;cursor:pointer;font-size:16px;box-shadow:0 10px 24px -10px var(--v)}
+.btn.light{background:#fff;color:var(--ink);box-shadow:none;border:1.5px solid var(--line)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:40px 0 70px}
+.hero h1{font-size:clamp(42px,6vw,76px)}
+.hl{background:var(--lime);padding:0 10px;border-radius:14px;display:inline-block;transform:rotate(-1.5deg)}
+.hero p{color:var(--muted);font-size:20px;margin:24px 0 32px;max-width:520px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.chat{background:var(--v);border-radius:32px;padding:28px;display:grid;gap:12px;position:relative}
+.msg{background:#fff;border-radius:18px 18px 18px 4px;padding:12px 16px;max-width:80%;font-size:15px}
+.msg.me{justify-self:end;background:var(--lime);border-radius:18px 18px 4px 18px}
+.msg small{display:block;color:var(--muted);font-size:12px}
+.badge{position:absolute;top:-16px;right:24px;background:var(--pink);font-weight:700;padding:8px 14px;border-radius:12px;font-size:14px;transform:rotate(4deg)}
+section{padding:80px 0}
+h2{font-size:clamp(32px,4vw,52px);margin-bottom:36px;max-width:700px}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.f{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:28px}
+.f .ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:26px;margin-bottom:18px}
+.f h3{font-size:22px;margin-bottom:8px}
+.f p{color:var(--muted);font-size:16px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.pl{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:32px;display:flex;flex-direction:column}
+.pl.top{background:var(--ink);color:#fff;border:0}
+.pl.top p,.pl.top li{color:#c9c5ea}
+.pl h3{font-size:24px}
+.pl p{color:var(--muted);margin:6px 0 18px;font-size:15px}
+.pl .sum{font-size:42px;font-weight:800;margin-bottom:4px}
+.pl .sum small{font-size:16px;font-weight:500}
+.pl ul{list-style:none;display:grid;gap:10px;margin:22px 0 28px;color:var(--muted);font-size:15px;flex:1}
+.pl li:before{content:"●";color:var(--v);margin-right:10px;font-size:10px;vertical-align:middle}
+.pl.top li:before{color:var(--lime)}
+.pl.top .btn{background:var(--lime);color:var(--ink)}
+details{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 26px;margin-bottom:12px}
+summary{font-weight:700;font-size:19px;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+summary:after{content:"+";color:var(--v);font-size:24px;line-height:1}
+details[open] summary:after{content:"−"}
+details p{color:var(--muted);margin-top:12px}
+.final{background:var(--lime);border-radius:36px;padding:60px;text-align:center}
+.final h2{margin:0 auto 14px}
+.final p{font-size:19px;margin-bottom:28px}
+.final form{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.final input{padding:16px 20px;border-radius:16px;border:0;font:inherit;min-width:260px}
+footer{padding:40px 0 60px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:520px){header .btn{display:none}}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.feats,.plans{grid-template-columns:1fr}nav{display:none}.final{padding:36px 22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="logo">Speak<span>ly</span></div><nav><a href="#how">Как учимся</a><a href="#price">Цены</a><a href="#faq">Вопросы</a></nav><a class="btn" href="#start">Первый урок бесплатно</a></header>
+
+<div class="hero">
+  <div>
+    <h1>Заговорите на английском <span class="hl">за 3 месяца</span></h1>
+    <p>Мини-группы до 4 человек, живой преподаватель и 80% урока — разговор. Никаких скучных упражнений из учебника.</p>
+    <div class="cta"><a class="btn" href="#start">Записаться на пробный</a><a class="btn light" href="#price">Смотреть тарифы</a></div>
+  </div>
+  <div class="chat">
+    <span class="badge">урок идёт 🔴</span>
+    <div class="msg"><small>Преподаватель</small>So, what did you do last weekend?</div>
+    <div class="msg me"><small>Вы</small>I went to the mountains with my friends!</div>
+    <div class="msg"><small>Преподаватель</small>Sounds great! Tell us more 🙌</div>
+    <div class="msg me"><small>Вы</small>We hiked for 5 hours and it was amazing</div>
+  </div>
+</div>
+
+<section id="how">
+  <h2>Почему у нас начинают говорить, а не просто «учить»</h2>
+  <div class="feats">
+    <div class="f"><div class="ic" style="background:#ece8ff">🗣️</div><h3>80% — практика</h3><p>Каждое занятие строится вокруг разговора. Грамматику разбираем по ходу, на ваших же ошибках.</p></div>
+    <div class="f"><div class="ic" style="background:#f2fbd9">👥</div><h3>Группы до 4 человек</h3><p>Каждый говорит минимум 15 минут за урок. В больших группах так не получится.</p></div>
+    <div class="f"><div class="ic" style="background:#ffe6ef">📅</div><h3>Гибкое расписание</h3><p>Утро, вечер или выходные. Пропустили — переходите в другую группу того же уровня.</p></div>
+  </div>
+</section>
+
+<section id="price">
+  <h2>Тарифы</h2>
+  <div class="plans">
+    <div class="pl"><h3>Старт</h3><p>Попробовать формат</p><div class="sum">3 900 ₽<small> / мес</small></div><ul><li>8 групповых занятий</li><li>Домашние задания с проверкой</li><li>Доступ к записям уроков</li></ul><a class="btn light" href="#start">Выбрать</a></div>
+    <div class="pl top"><h3>Разговорный</h3><p>Самый популярный</p><div class="sum">6 900 ₽<small> / мес</small></div><ul><li>12 групповых занятий</li><li>2 разговорных клуба в месяц</li><li>Личный план и обратная связь</li><li>Сертификат по окончании</li></ul><a class="btn" href="#start">Выбрать</a></div>
+    <div class="pl"><h3>Индивидуально</h3><p>Один на один с преподавателем</p><div class="sum">12 000 ₽<small> / мес</small></div><ul><li>8 личных занятий</li><li>Программа под вашу цель</li><li>Подготовка к собеседованию</li></ul><a class="btn light" href="#start">Выбрать</a></div>
+  </div>
+</section>
+
+<section id="faq">
+  <h2>Частые вопросы</h2>
+  <details open><summary>Я совсем не знаю английский. Мне подойдёт?</summary><p>Да. На пробном уроке определим уровень и подберём группу. Для нулевого уровня есть отдельный поток.</p></details>
+  <details><summary>Что если я пропущу занятие?</summary><p>Запись урока остаётся в личном кабинете, а ещё можно прийти на занятие другой группы вашего уровня.</p></details>
+  <details><summary>Можно ли вернуть деньги?</summary><p>Да, за неиспользованные занятия вернём деньги в течение 5 рабочих дней.</p></details>
+</section>
+
+<section id="start">
+  <div class="final">
+    <h2>Первый урок — бесплатно</h2>
+    <p>Оставьте телефон, подберём время и уровень.</p>
+    <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Записали ✓'"><input type="tel" placeholder="+7 (___) ___-__-__" required><button class="btn" type="submit">Записаться</button></form>
+  </div>
+</section>
+
+<footer><span>© Speakly</span><span>Демо-проект для портфолио, школа вымышлена</span></footer>
+</div>
+</body>
+</html>

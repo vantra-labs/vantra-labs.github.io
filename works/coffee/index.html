@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Зерно и Пар — кофейня на Литейном</title>
+<meta name="description" content="Кофейня с собственной обжаркой. Завтраки до 15:00, десерты, кофе с собой.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5efe6;--ink:#2a1d14;--muted:#7a6656;--accent:#b5562b;--card:#fffaf3;--line:#e4d8c8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Manrope,system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:700;line-height:1.05;letter-spacing:-.01em}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.logo{font-family:Fraunces,serif;font-size:24px;font-weight:700;display:flex;gap:10px;align-items:center}
+.logo i{width:30px;height:30px;border-radius:50%;background:var(--accent);display:inline-block;position:relative}
+.logo i:after{content:"";position:absolute;inset:7px 13px;background:var(--bg);border-radius:8px;transform:rotate(25deg)}
+nav{display:flex;gap:28px;font-weight:600;font-size:15px}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);padding:14px 26px;border-radius:999px;font-weight:700;border:0;cursor:pointer;font-size:15px}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:48px 0 80px}
+.hero h1{font-size:clamp(44px,6.4vw,84px)}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{font-size:19px;color:var(--muted);max-width:480px;margin:24px 0 32px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.cup{aspect-ratio:1;border-radius:48% 52% 46% 54%;background:radial-gradient(circle at 35% 30%,#e9a46c,#b5562b 45%,#6b2f15);position:relative;box-shadow:0 40px 80px -30px #6b2f15}
+.cup:before{content:"";position:absolute;inset:16%;border-radius:50%;background:radial-gradient(circle at 50% 45%,#f3e2cc 0 18%,#c99a6b 19% 34%,#7b4423 35% 60%,#4a2410 61%)}
+.cup:after{content:"с 8:00";position:absolute;right:-6px;bottom:24px;background:var(--card);padding:12px 18px;border-radius:16px;font-weight:700;box-shadow:0 10px 30px -10px #0003}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats div{padding:28px 0;text-align:center}
+.stats b{display:block;font-family:Fraunces,serif;font-size:40px}
+.stats span{color:var(--muted);font-size:14px}
+section{padding:90px 0}
+.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:40px;gap:20px}
+.head h2{font-size:clamp(34px,4vw,54px);max-width:560px}
+.head p{color:var(--muted);max-width:360px}
+.menu{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px}
+.dot{height:150px;border-radius:18px;margin-bottom:18px}
+.item h3{font-size:22px;margin-bottom:6px}
+.item p{color:var(--muted);font-size:14px;min-height:44px}
+.price{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-weight:700}
+.price small{color:var(--muted);font-weight:400}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.dark{background:var(--ink);color:var(--bg);border-radius:32px;padding:56px}
+.dark h2{font-size:48px;margin-bottom:18px}
+.dark p{opacity:.75;margin-bottom:26px}
+.dark ul{list-style:none;display:grid;gap:12px}
+.dark li{display:flex;justify-content:space-between;border-bottom:1px solid #ffffff22;padding-bottom:12px}
+form{background:var(--card);border:1px solid var(--line);border-radius:32px;padding:44px;display:grid;gap:14px}
+form h2{font-size:38px;margin-bottom:8px}
+input,select{width:100%;padding:15px 18px;border-radius:14px;border:1px solid var(--line);background:#fff;font:inherit}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+footer{padding:40px 0 60px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--line)}
+@media(max-width:900px){.hero,.split{grid-template-columns:1fr}.menu{grid-template-columns:1fr 1fr}nav{display:none}.dark,form{padding:32px}}
+@media(max-width:520px){header .btn{display:none}.cup{max-width:300px;margin:0 auto;width:100%}.cup:after{right:0}.menu{grid-template-columns:1fr}.stats b{font-size:28px}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="logo" href="#"><i></i>Зерно и Пар</a>
+  <nav><a href="#menu">Меню</a><a href="#hours">Часы</a><a href="#book">Бронь</a></nav>
+  <a class="btn" href="#book">Забронировать</a>
+</header>
+
+<div class="hero">
+  <div>
+    <h1>Кофе, который <em>обжариваем</em> сами</h1>
+    <p>Маленькая кофейня на Литейном. Своя обжарка каждый вторник, завтраки до 15:00 и десерты, которые печём утром.</p>
+    <div class="cta"><a class="btn" href="#book">Забронировать стол</a><a class="btn alt" href="#menu">Смотреть меню</a></div>
+  </div>
+  <div class="cup"></div>
+</div>
+
+<div class="stats">
+  <div><b>6</b><span>сортов зерна в работе</span></div>
+  <div><b>48 ч</b><span>с момента обжарки</span></div>
+  <div><b>24</b><span>места в зале</span></div>
+</div>
+
+<section id="menu">
+  <div class="head"><h2>Что у нас любят больше всего</h2><p>Полное меню — в зале. Тут то, ради чего возвращаются.</p></div>
+  <div class="menu">
+    <div class="item"><div class="dot" style="background:linear-gradient(135deg,#d9b48f,#8a4b25)"></div><h3>Флэт уайт</h3><p>Двойной эспрессо на бразильском зерне и плотное молоко</p><div class="price">240 ₽<small>250 мл</small></div></div>
+    <div class="item"><div class="dot" style="background:linear-gradient(135deg,#f2d6a2,#c7843f)"></div><h3>Раф лаванда</h3><p>Сливки, ваниль и лавандовый сироп собственного приготовления</p><div class="price">290 ₽<small>300 мл</small></div></div>
+    <div class="item"><div class="dot" style="background:linear-gradient(135deg,#efe1c7,#a5763e)"></div><h3>Сырники</h3><p>Три штуки, сметана и ягодный соус. До 15:00</p><div class="price">360 ₽<small>220 г</small></div></div>
+    <div class="item"><div class="dot" style="background:linear-gradient(135deg,#c79a7a,#5b2f1d)"></div><h3>Баскский чизкейк</h3><p>Карамельная корочка, нежная середина</p><div class="price">320 ₽<small>130 г</small></div></div>
+  </div>
+</section>
+
+<section id="hours" style="padding-top:0">
+  <div class="split">
+    <div class="dark">
+      <h2>Часы работы</h2>
+      <p>Литейный проспект, 00. Пять минут от метро.</p>
+      <ul>
+        <li><span>Пн — Пт</span><span>8:00 — 21:00</span></li>
+        <li><span>Сб — Вс</span><span>9:00 — 22:00</span></li>
+        <li><span>Завтраки</span><span>до 15:00</span></li>
+        <li><span>Кофе с собой</span><span>всегда</span></li>
+      </ul>
+    </div>
+    <form id="book" onsubmit="event.preventDefault();this.querySelector('button').textContent='Заявка отправлена ✓'">
+      <h2>Забронировать стол</h2>
+      <input placeholder="Ваше имя" required>
+      <input placeholder="Телефон" type="tel" required>
+      <div class="row"><input type="date" required><select><option>2 гостя</option><option>3–4 гостя</option><option>5+ гостей</option></select></div>
+      <button class="btn" type="submit">Отправить заявку</button>
+    </form>
+  </div>
+</section>
+
+<footer><span>© Зерно и Пар</span><span>Демо-проект для портфолио, кофейня вымышлена</span></footer>
+</div>
+</body>
+</html>
