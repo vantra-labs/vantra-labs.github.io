@@ -3,214 +3,199 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VANTRA — небольшая студия приложений</title>
-<meta name="description" content="Студия VANTRA. Сейчас один продукт: Clarify, планировщик задач для Windows и телефона. Бесплатно, без подписок.">
+<title>VANTRA — программы для работы, которую обычно делают руками</title>
+<meta name="description" content="Студия VANTRA. Actum — исполнительная документация для стройки по 344/пр и 1026/пр. Clarify — планировщик, который понимает обычные фразы. Бесплатно, без подписок.">
 
 <script>
-// Возврат из Яндекс OAuth для веб-версии приложения.
-//
-// Приложение живёт в /app/, но redirect_uri у Яндекса — корень домена: он
-// считается из Uri.base.origin, в котором пути нет вовсе, и зарегистрирован в
-// настройках приложения Яндекса именно как корень. Поэтому человек с кодом
-// прилетает сюда, на витрину, где этот код никому не нужен. Перебрасываем его
-// вместе с кодом туда, где его ждут.
-//
-// Стоит первым делом в head, до загрузки стилей и шрифтов: чем меньше успеет
-// нарисоваться постороннего, тем незаметнее переход.
+// Возврат из Яндекс OAuth для веб-версии Clarify: redirect_uri у Яндекса —
+// корень домена, а приложение живёт в /app/. Перебрасываем код туда, где его ждут.
+// Стоит первым в head, чтобы до перехода ничего не успело нарисоваться.
 (function () {
   var params = new URLSearchParams(window.location.search);
-  if (params.has('code')) {
-    window.location.replace('/app/' + window.location.search);
-  }
+  if (params.has('code')) window.location.replace('/app/' + window.location.search);
 })();
+document.documentElement.classList.add('js');
 </script>
 
 <link rel="canonical" href="https://vantra-labs.github.io/">
-
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vantra-labs.github.io/">
-<meta property="og:title" content="VANTRA — небольшая студия приложений">
-<meta property="og:description" content="Сейчас один продукт: Clarify, планировщик задач для Windows и телефона.">
+<meta property="og:title" content="VANTRA — программы для работы, которую обычно делают руками">
+<meta property="og:description" content="Actum — исполнительная документация для стройки. Clarify — планировщик, который понимает обычные фразы.">
 <meta property="og:image" content="https://vantra-labs.github.io/assets/og/vantra-og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4efe6">
 
 <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/favicon-180.png">
-
-<link rel="preload" href="assets/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-
-<link rel="stylesheet" href="css/site.css">
-<link rel="stylesheet" href="css/pages.css">
+<link rel="preload" href="assets/fonts/geologica-var.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="css/v2.css">
 </head>
 <body>
-<a class="skip-link" href="#main">Перейти к содержимому</a>
+<a class="skip" href="#main">Перейти к содержимому</a>
 
-<header class="header" id="header">
-  <div class="header__inner">
-    <a class="brand" href="/">
-      <svg class="brand__mark" viewBox="0 0 111 111" fill="currentColor" aria-hidden="true">
-        <path d="M0 43 L0 11 L32 11 L32 22 L11 22 L11 43 Z"/>
-        <path d="M111 32 L111 0 L79 0 L79 11 L100 11 L100 32 Z"/>
-        <path d="M0 79 L0 111 L32 111 L32 100 L11 100 L11 79 Z"/>
-        <path d="M100 79 L100 111 L68 111 L68 100 L89 100 L89 79 Z"/>
-      </svg>
-      VANTRA
-    </a>
-
-    <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Меню">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav class="nav" id="nav" aria-label="Основная">
-      <a href="#produkty">Продукты</a>
-      <a href="#podhod">Как я работаю</a>
-      <a class="btn btn--primary" href="clarify/">Clarify</a>
-    </nav>
-  </div>
-</header>
+<div class="wrap top"><header class="top__bar">
+  <a class="brand" href="/" aria-label="VANTRA, на главную">
+    <svg viewBox="0 0 111 111" fill="currentColor" aria-hidden="true"><path d="M0 43 L0 11 L32 11 L32 22 L11 22 L11 43 Z"/><path d="M111 32 L111 0 L79 0 L79 11 L100 11 L100 32 Z"/><path d="M0 79 L0 111 L32 111 L32 100 L11 100 L11 79 Z"/><path d="M100 79 L100 111 L68 111 L68 100 L89 100 L89 79 Z"/></svg>
+    VANTRA
+  </a>
+  <nav aria-label="Основная">
+    <a href="#actum">Actum</a>
+    <a href="#clarify">Clarify</a>
+    <a href="#rules">Как я работаю</a>
+    <a href="https://t.me/ClarifyPlan" target="_blank" rel="noopener">Telegram</a>
+  </nav>
+  <a class="btn btn--ink" href="#actum">Скачать</a>
+</header></div>
 
 <main id="main">
-
-  <section class="opening">
-    <div class="shell">
-      <h1>Делаю приложения, которыми пользуюсь сам</h1>
-      <p class="opening__lead">
-        VANTRA — это один человек и то, что он успевает довести до конца.
-        Сейчас продукт один: планировщик задач Clarify. Он собран, работает и
-        им можно пользоваться прямо сегодня, а не «скоро».
-      </p>
+  <section class="wrap hero">
+    <h1>Программы для работы, которую обычно делают руками</h1>
+    <div class="hero__row">
+      <p class="hero__lede">Я прораб и пишу программы под то, что сам делаю каждый день: исполнительную документацию и планирование дня. Выпускаю только то, что доведено до конца.</p>
+      <div class="hero__ctas">
+        <a class="btn btn--ink btn--lg" href="#actum">Actum</a>
+        <a class="btn btn--line btn--lg" href="#clarify">Clarify</a>
+      </div>
     </div>
   </section>
 
-  <section class="section section--tight" id="produkty">
-    <div class="shell">
-      <article class="product reveal">
-        <div>
-          <svg class="product__mark" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
-            <path d="M16 8.5 L23 8.5 A4 4 0 0 1 27 12.5 L27 51.5 A4 4 0 0 1 23 55.5 L16 55.5 A12 12 0 0 1 4 43.5 L4 20.5 A12 12 0 0 1 16 8.5 Z" transform="translate(0 -6)"/>
-            <path d="M41 8.5 L48 8.5 A12 12 0 0 1 60 20.5 L60 43.5 A12 12 0 0 1 48 55.5 L41 55.5 A4 4 0 0 1 37 51.5 L37 12.5 A4 4 0 0 1 41 8.5 Z" transform="translate(0 6)"/>
-          </svg>
-          <h2>Clarify</h2>
-          <p class="product__kind">Планировщик задач. Windows и телефон</p>
-          <p class="product__text">
-            Пишете или говорите обычную фразу, а дата, время и метка встают по
-            местам сами. Задачи общие между компьютером и телефоном, работают
-            без интернета и принимаются телеграм-ботом.
-          </p>
-          <div class="product__actions">
-            <a class="btn btn--primary" href="clarify/">Подробно о Clarify</a>
-            <a class="btn btn--ghost" href="https://github.com/vantra-labs/clarify/releases/latest/download/Clarify_Setup.exe">
-              Скачать для Windows
-            </a>
-          </div>
-        </div>
-
-        <div class="product__shot">
-          <!-- Снимок идёт за темой посетителя, как и на странице продукта. -->
-          <picture>
-            <source media="(prefers-color-scheme: light)" type="image/webp"
-                    srcset="assets/shots/light-760.webp 760w,
-                            assets/shots/light-1100.webp 1100w,
-                            assets/shots/light-1600.webp 1600w"
-                    sizes="(min-width: 900px) 52vw, 92vw">
-            <source type="image/webp"
-                    srcset="assets/shots/list-760.webp 760w,
-                            assets/shots/list-1100.webp 1100w,
-                            assets/shots/list-1600.webp 1600w"
-                    sizes="(min-width: 900px) 52vw, 92vw">
-            <img src="assets/shots/list-1100.jpg"
-                 width="1600" height="1000"
-                 fetchpriority="high" decoding="async"
-                 alt="Окно Clarify со списком задач: срок, метка и подсветка по важности у каждой строки.">
-          </picture>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="podhod">
-    <div class="shell">
-      <div class="section-head">
-        <h2>Как я работаю</h2>
-        <p>Три правила, по которым проще понять, чего от этих приложений ждать, а чего нет.</p>
+  <div class="wrap">
+    <figure class="assembly" style="margin:0">
+      <div class="card" aria-hidden="true">
+        <div class="card__head"><b>Карточка объекта</b><span>вносится один раз</span></div>
+        <ol>
+          <li data-k="obj"><span class="tick"></span><span><small>Объект</small>ЖК «Пример», Демонстрационная, 5</span></li>
+          <li data-k="zast"><span class="tick"></span><span><small>Застройщик</small>ГКУ «Дирекция строительства»</span></li>
+          <li data-k="podr"><span class="tick"></span><span><small>Генподрядчик</small>АО «СтройПример», СРО</span></li>
+          <li data-k="tn"><span class="tick"></span><span><small>Технадзор заказчика</small>Иванов И. И., приказ № 15-Д</span></li>
+          <li data-k="nach"><span class="tick"></span><span><small>Начальник участка</small>Петров П. П., приказ № 4-к</span></li>
+          <li data-k="sk"><span class="tick"></span><span><small>Стройконтроль</small>Сидоров С. С., приказ № 4-к</span></li>
+        </ol>
       </div>
 
-      <ul class="rules">
-        <li>
-          <h3>Доделываю до конца</h3>
-          <p>
-            Три функции, которые работают всегда, полезнее десяти, которые
-            работают, если повезёт. Поэтому продукт пока один, и на его
-            странице нет ни слова про то, чего в нём ещё нет.
-          </p>
-        </li>
-        <li>
-          <h3>Неудобное говорю первым</h3>
-          <p>
-            Windows ругается на установщик, потому что у него нет платной
-            подписи. Об этом написано прямо на странице Clarify, до кнопки
-            скачивания, а не обнаруживается уже после неё.
-          </p>
-        </li>
-        <li>
-          <h3>Не беру денег, пока не за что</h3>
-          <p>
-            Clarify бесплатен: подписки нет, оплаты внутри нет, рекламы нет.
-            Если однажды появится платная часть, я скажу об этом заранее и
-            прямо, а не подменю условия по-тихому.
-          </p>
-        </li>
-      </ul>
+      <div class="sheet">
+        <img src="assets/v2/act.webp" srcset="assets/v2/act-900.webp 900w, assets/v2/act.webp 1241w" sizes="(min-width: 900px) 560px, 92vw"
+             width="1241" height="1754" fetchpriority="high" alt="Акт освидетельствования скрытых работ № НЭС-01, собранный Actum из карточки объекта">
+        <span class="hl" data-k="obj" style="top:7.9%;height:2.3%"></span>
+        <span class="hl" data-k="zast" style="top:10.4%;height:4.4%"></span>
+        <span class="hl" data-k="podr" style="top:18.8%;height:4.2%"></span>
+        <span class="hl" data-k="tn" style="top:44.6%;height:4.8%"></span>
+        <span class="hl" data-k="nach" style="top:53.7%;height:1.7%"></span>
+        <span class="hl" data-k="sk" style="top:59%;height:4%"></span>
+        <span class="hl warn" style="top:39.6%;height:1.8%;left:77.5%;width:18%"></span>
+      </div>
+
+      <div class="note n-date"><b>Акт раньше окончания работ</b>По общему журналу работы закончены 21 октября, а акт датирован 14-м.</div>
+      <div class="note ok n-ready"><b>Остальное сходится</b>Шесть сторон и представителей подставлены по приказам, действующим на дату акта.</div>
+      <figcaption class="sr">Actum заполняет акт из карточки объекта и сам находит ошибку в дате.</figcaption>
+    </figure>
+  </div>
+
+  <section class="sec" id="actum">
+    <div class="wrap">
+      <div class="mark"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="M4 16 A12 12 0 0 1 16 4 H45 Q53 4 49.5 10.5 L10.5 49.5 Q4 53 4 45 Z" transform="translate(2.5 -2.5)"/><path d="M4 16 A12 12 0 0 1 16 4 H45 Q53 4 49.5 10.5 L10.5 49.5 Q4 53 4 45 Z" transform="rotate(180 32 32) translate(2.5 -2.5)"/></svg>Actum</div>
+      <h2>Внёс объект один раз. Акты и журналы собираются сами.</h2>
+      <p class="sec__lede">Стороны, люди с приказами, материалы с сертификатами — в карточке объекта. Сменился начальник участка — меняете приказ в одном месте, а не в сорока актах.</p>
+
+      <div class="norms" aria-label="Формы и нормативы">
+        <div><b>344/пр</b><span>АОСР, АООК, АОУСИТО, акты ГРО и разбивки осей</span></div>
+        <div><b>1026/пр</b><span>Общий журнал работ, все шесть разделов</span></div>
+        <div><b>СП 543</b><span>Журнал входного контроля</span></div>
+        <div><b>СП 70</b><span>Бетонные, сварочные и монтажные журналы</span></div>
+        <div><b>№ 77</b><span>Том ИД с описью и листом-заверителем</span></div>
+      </div>
+
+      <div class="feats">
+        <div><h3>Проверка до технадзора</h3><p>Акт раньше окончания работ, представитель без действующего приказа, материал без сертификата — видно до подписи.</p></div>
+        <div><h3>Замечания стройконтроля</h3><p>Ведутся списком со сроками. Пока замечание по акту открыто, Actum напомнит, а в раздел 4 журнала оно попадёт само.</p></div>
+        <div><h3>Том ИД одной кнопкой</h3><p>Опись, сквозная нумерация и лист-заверитель. Акты пачкой в Word и PDF.</p></div>
+        <div><h3>Вместе через общую папку</h3><p>Сетевой диск или Яндекс Диск — и с объектом работают несколько человек. Видно, кто сейчас внутри, правки не затираются.</p></div>
+        <div><h3>Без интернета</h3><p>Данные лежат у вас на компьютере. Ни серверов, ни аккаунтов, ни подписки.</p></div>
+        <div><h3>Обновляется сама</h3><p>Из интернета или из общей папки, если на работе режут GitHub. Права администратора не нужны.</p></div>
+      </div>
+
+      <div class="ctas">
+        <a class="btn btn--ink btn--lg" href="https://github.com/vantra-labs/actum-releases/releases/latest/download/Actum-Setup.exe">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Скачать для Windows</a>
+        <a class="btn btn--line btn--lg" href="actum/">Подробнее об Actum</a>
+        <span class="fine">Бесплатно. Windows 10 и 11. Если Actum уже стоит, он просто обновится.</span>
+      </div>
     </div>
   </section>
 
+  <section class="sec dark" id="clarify">
+    <div class="wrap">
+      <div class="mark"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="M16 8.5 L23 8.5 A4 4 0 0 1 27 12.5 L27 51.5 A4 4 0 0 1 23 55.5 L16 55.5 A12 12 0 0 1 4 43.5 L4 20.5 A12 12 0 0 1 16 8.5 Z" transform="translate(0 -6)"/><path d="M41 8.5 L48 8.5 A12 12 0 0 1 60 20.5 L60 43.5 A12 12 0 0 1 48 55.5 L41 55.5 A4 4 0 0 1 37 51.5 L37 12.5 A4 4 0 0 1 41 8.5 Z" transform="translate(0 6)"/></svg>Clarify</div>
+      <h2>Скажите задачу так, как сказали бы человеку.</h2>
+      <p class="sec__lede">Без полей и календарей. Clarify сам находит в фразе дату, время и метку. Попробуйте прямо здесь.</p>
+
+      <div class="say">
+        <label for="say">Новая задача</label>
+        <input id="say" type="text" value="завтра в 15:00 позвонить по смете #работа" autocomplete="off" spellcheck="false">
+        <div class="chips" id="chips" aria-live="polite"></div>
+      </div>
+      <div class="try">Ещё:
+        <button type="button" data-say="в пятницу забрать посылку #личное">в пятницу забрать посылку #личное</button>
+        <button type="button" data-say="15 ноября оплатить интернет #дом">15 ноября оплатить интернет #дом</button>
+        <button type="button" data-say="сегодня в 20:30 тренировка #спорт">сегодня в 20:30 тренировка #спорт</button>
+      </div>
+
+      <img class="shot" src="assets/v2/clarify-all.webp" width="1307" height="722" loading="lazy" alt="Окно Clarify: все задачи с датами, временем и метками">
+
+      <div class="feats">
+        <div><h3>Голосом</h3><p>Нажали микрофон и продиктовали. Руки при этом могут быть заняты.</p></div>
+        <div><h3>Из Telegram</h3><p>Отправьте боту сообщение или голосовое — задача появится в приложении.</p></div>
+        <div><h3>Компьютер и телефон</h3><p>Отметили на одном — через секунду отмечено на другом. Без интернета изменения копятся и уходят, когда связь вернётся.</p></div>
+      </div>
+
+      <div class="ctas">
+        <a class="btn btn--paper btn--lg" href="https://github.com/vantra-labs/clarify/releases/latest/download/Clarify_Setup.exe">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Скачать для Windows</a>
+        <a class="btn btn--gline btn--lg" href="/app/">Открыть в браузере</a>
+        <a class="btn btn--gline btn--lg" href="clarify/">Подробнее</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="rules">
+    <div class="wrap">
+      <h2>Три правила, по которым понятно, чего ждать</h2>
+      <div class="rules">
+        <div class="rule"><h3>Доделываю до конца</h3><p>Три функции, которые работают всегда, полезнее десяти, которые работают, если повезёт. На странице продукта нет ни слова о том, чего в нём ещё нет.</p></div>
+        <div class="rule"><h3>Неудобное говорю первым</h3><p>Windows ругается на установщики без платной подписи. Об этом написано у кнопки скачивания, а не обнаруживается после неё.</p></div>
+        <div class="rule"><h3>Не беру денег, пока не за что</h3><p>Обе программы бесплатны: без подписок, рекламы и оплаты внутри. Если появится платная часть, скажу заранее и прямо.</p></div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer class="footer">
-  <div class="shell">
-    <div class="footer__grid">
-      <div class="footer__about">
-        <a class="brand" href="/">
-          <svg class="brand__mark" viewBox="0 0 111 111" fill="currentColor" aria-hidden="true">
-            <path d="M0 43 L0 11 L32 11 L32 22 L11 22 L11 43 Z"/>
-            <path d="M111 32 L111 0 L79 0 L79 11 L100 11 L100 32 Z"/>
-            <path d="M0 79 L0 111 L32 111 L32 100 L11 100 L11 79 Z"/>
-            <path d="M100 79 L100 111 L68 111 L68 100 L89 100 L89 79 Z"/>
-          </svg>
-          VANTRA
-        </a>
-        <p>Небольшая студия приложений. Пишу по одному и довожу до рабочего состояния.</p>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__about">
+        <a class="brand" href="/"><svg viewBox="0 0 111 111" fill="currentColor" aria-hidden="true"><path d="M0 43 L0 11 L32 11 L32 22 L11 22 L11 43 Z"/><path d="M111 32 L111 0 L79 0 L79 11 L100 11 L100 32 Z"/><path d="M0 79 L0 111 L32 111 L32 100 L11 100 L11 79 Z"/><path d="M100 79 L100 111 L68 111 L68 100 L89 100 L89 79 Z"/></svg>VANTRA</a>
+        <p>Студия одного прораба, который пишет программы. Каждая доведена до рабочего состояния.</p>
       </div>
-
-      <div>
-        <h3>Продукты</h3>
-        <ul>
-          <li><a href="clarify/">Clarify</a></li>
-          <li><a href="https://vantra-labs.github.io/app/" target="_blank" rel="noopener">Clarify в браузере</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3>Связь</h3>
-        <ul>
-          <li><a href="https://t.me/ClarifyPlan" target="_blank" rel="noopener">Канал в Telegram</a></li>
-          <li><a href="https://t.me/ClarifyHelp_bot" target="_blank" rel="noopener">Написать в поддержку</a></li>
-        </ul>
-      </div>
+      <div><h4>Программы</h4><ul>
+        <li><a href="actum/">Actum</a></li>
+        <li><a href="clarify/">Clarify</a></li>
+        <li><a href="/app/">Clarify в браузере</a></li>
+      </ul></div>
+      <div><h4>Связь</h4><ul>
+        <li><a href="https://t.me/ClarifyPlan" target="_blank" rel="noopener">Канал в Telegram</a></li>
+        <li><a href="https://t.me/ClarifyHelp_bot" target="_blank" rel="noopener">Поддержка</a></li>
+        <li><a href="privacy.html">Конфиденциальность</a></li>
+      </ul></div>
     </div>
-
-    <div class="footer__bottom">
-      <span>© 2026 VANTRA</span>
-      <a href="privacy.html">Политика конфиденциальности</a>
-    </div>
+    <p class="foot__base">© 2026 VANTRA</p>
   </div>
 </footer>
 
-<script src="js/site.js" defer></script>
+<script src="js/v2.js" defer></script>
 </body>
 </html>

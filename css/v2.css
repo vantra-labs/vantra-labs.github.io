@@ -1,0 +1,206 @@
+/* ============================================================================
+   VANTRA v2 — общий слой стилей для главной и страниц продуктов.
+   Бумага и графит, как в самих приложениях. Один шрифт — Geologica.
+   Цвета сигналов (зелёный, янтарный) — только там, где они что-то значат:
+   это те же отметки, что ставит инспектор Actum.
+   ========================================================================= */
+
+@font-face {
+  font-family: 'Geologica';
+  src: url('../assets/fonts/geologica-var.woff') format('woff');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --paper: #fffdf9;
+  --bg: #f4efe6;
+  --stage: #ebe4d8;
+  --ink: #1e1c19;
+  --ink-2: #5b564d;
+  --ink-3: #8a8478;
+  --line: rgba(30, 28, 25, .1);
+  --graphite: #1e1b16;
+  --graphite-2: #2a2620;
+  --on-g: #f4efe6;
+  --on-g-2: rgba(244, 239, 230, .68);
+  --on-g-3: rgba(244, 239, 230, .42);
+  --g-line: rgba(244, 239, 230, .12);
+  --ok: #2e8a5e;
+  --amber: #a86a12;
+  --wrap: 1200px;
+  --ease: cubic-bezier(.2, .7, .1, 1);
+}
+
+* { box-sizing: border-box }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.55 'Geologica', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; font-feature-settings: 'ss01' }
+img { max-width: 100%; display: block }
+a { color: inherit; text-decoration: none }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 6px }
+.wrap { width: min(var(--wrap), calc(100% - 64px)); margin-inline: auto }
+.skip { position: absolute; left: 16px; top: -60px; z-index: 50; padding: 10px 16px; border-radius: 10px; background: var(--ink); color: var(--paper) }
+.skip:focus { top: 16px }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap }
+
+h1, h2, h3 { margin: 0; font-weight: 650; letter-spacing: -.035em; line-height: 1 }
+p { margin: 0 }
+
+/* --- Кнопки ---------------------------------------------------------------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 48px; padding: 0 24px;
+  border-radius: 999px; font: 560 16px/1 'Geologica', sans-serif; letter-spacing: -.01em; white-space: nowrap;
+  transition: transform .2s var(--ease), background-color .2s, box-shadow .2s }
+.btn:active { transform: scale(.98) }
+.btn svg { width: 18px; height: 18px; flex: none }
+.btn--ink { background: var(--ink); color: var(--paper) }
+.btn--ink:hover { background: #000 }
+.btn--line { box-shadow: inset 0 0 0 1.5px var(--line) }
+.btn--line:hover { box-shadow: inset 0 0 0 1.5px rgba(30, 28, 25, .3) }
+.btn--paper { background: var(--on-g); color: var(--graphite) }
+.btn--paper:hover { background: #fff }
+.btn--gline { color: var(--on-g); box-shadow: inset 0 0 0 1.5px var(--g-line) }
+.btn--gline:hover { box-shadow: inset 0 0 0 1.5px rgba(244, 239, 230, .35) }
+.btn--lg { height: 56px; padding: 0 30px; font-size: 17px }
+.fine { font-size: 14px; color: var(--ink-3) }
+
+/* --- Шапка ------------------------------------------------------------------ */
+.top { position: sticky; top: 12px; z-index: 30; margin-top: 12px }
+.top__bar { display: flex; align-items: center; gap: 28px; height: 56px; padding: 0 8px 0 20px; border-radius: 999px;
+  background: rgba(255, 252, 247, .74); -webkit-backdrop-filter: blur(20px) saturate(1.5); backdrop-filter: blur(20px) saturate(1.5);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .7), 0 12px 32px -20px rgba(40, 30, 15, .4) }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 650; font-size: 16px; letter-spacing: .06em }
+.brand svg { width: 20px; height: 20px }
+.top nav { display: flex; gap: 26px; margin-left: auto; font-size: 15px; color: var(--ink-2) }
+.top nav a:hover, .top nav a[aria-current] { color: var(--ink) }
+.top .btn { height: 40px; padding: 0 18px; font-size: 15px }
+
+/* --- Hero ------------------------------------------------------------------- */
+.hero { padding: clamp(56px, 7vw, 96px) 0 clamp(36px, 4vw, 56px) }
+.hero h1 { font-size: clamp(44px, 6.2vw, 90px); max-width: 14em; letter-spacing: -.045em; line-height: .96 }
+.hero__row { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-top: clamp(28px, 3vw, 40px) }
+.hero__lede { font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; color: var(--ink-2); max-width: 31em }
+.hero__ctas { display: flex; gap: 12px; flex-wrap: wrap }
+
+/* Сцена: карточка объекта → акт. Единственная самостоятельная анимация сайта. */
+.assembly { position: relative; border-radius: 40px; background: var(--stage); overflow: hidden; isolation: isolate;
+  height: clamp(560px, 62vw, 820px) }
+.assembly::before { content: ''; position: absolute; inset: 0; z-index: -1;
+  background: radial-gradient(70% 60% at 62% 30%, rgba(255, 253, 249, .9), transparent 70%) }
+.sheet { position: absolute; left: 40%; top: 7%; width: min(560px, 46%); aspect-ratio: 1241 / 1754; border-radius: 6px;
+  background: #fff; overflow: hidden; transform: rotate(-1.2deg);
+  box-shadow: 0 80px 110px -60px rgba(40, 28, 10, .6), 0 18px 40px -22px rgba(40, 28, 10, .35) }
+.sheet img { width: 100%; height: auto }
+.hl { position: absolute; left: 4.6%; width: 91%; border-radius: 5px; background: rgba(46, 138, 94, .14);
+  box-shadow: inset 0 0 0 1.5px rgba(46, 138, 94, .55); transform-origin: left center }
+.hl.warn { background: rgba(168, 106, 18, .16); box-shadow: inset 0 0 0 1.5px rgba(168, 106, 18, .65) }
+
+.card { position: absolute; left: 5%; top: 12%; width: min(400px, 38%); padding: 22px 22px 10px; border-radius: 26px;
+  background: rgba(255, 253, 249, .88); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  box-shadow: 0 40px 70px -40px rgba(40, 28, 10, .5), inset 0 0 0 1px rgba(255, 255, 255, .8) }
+.card__head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; border-bottom: 1px solid var(--line) }
+.card__head b { font-weight: 600; font-size: 17px; letter-spacing: -.01em }
+.card__head span { font-size: 13px; color: var(--ink-3) }
+.card ol { list-style: none; margin: 0; padding: 0 }
+.card li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.35 }
+.card li:last-child { border-bottom: 0 }
+.card li small { display: block; color: var(--ink-3); font-size: 12.5px; margin-bottom: 2px }
+.tick { width: 18px; height: 18px; margin-top: 1px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line); position: relative }
+.tick::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.3l2.6 2.6L13 6.4' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat }
+
+.note { position: absolute; width: 300px; padding: 16px 18px 17px; border-radius: 20px; background: rgba(255, 253, 249, .94);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); font-size: 14px; line-height: 1.42; color: var(--ink-2);
+  box-shadow: 0 30px 60px -30px rgba(40, 28, 10, .55), inset 0 0 0 1px rgba(255, 255, 255, .8) }
+.note b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 3px; font-size: 15px }
+.note::before { content: ''; position: absolute; left: -7px; top: 19px; width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--paper); background: var(--amber) }
+.note.ok::before { background: var(--ok) }
+.n-date { right: 3%; top: 41% }
+.n-ready { right: 6%; bottom: 9% }
+
+/* Состояния сборки. Без JS (и при reduced motion) всё стоит в финале. */
+.js .assembly:not(.play) .tick::after { transform: scale(0) }
+.js .assembly:not(.play) .hl { transform: scaleX(0) }
+.js .assembly:not(.play) .note { opacity: 0; transform: translateY(10px) scale(.98) }
+.js .assembly:not(.play) .card li { color: var(--ink-3) }
+.js .assembly .tick::after { transition: transform .45s cubic-bezier(.3, 1.6, .5, 1) var(--d, 0s) }
+.js .assembly .hl { transition: transform .7s var(--ease) var(--d, 0s) }
+.js .assembly .card li { transition: color .3s var(--d, 0s) }
+.js .assembly .note { transition: opacity .5s var(--d, 0s), transform .6s var(--ease) var(--d, 0s) }
+
+/* --- Общие секции ---------------------------------------------------------- */
+.sec { padding: clamp(96px, 12vw, 168px) 0 }
+.eyebrowless h2, .sec h2 { font-size: clamp(40px, 5.6vw, 76px); max-width: 13em }
+.sec__lede { margin-top: 24px; font-size: clamp(18px, 1.6vw, 21px); color: var(--ink-2); max-width: 34em }
+.mark { display: inline-flex; align-items: center; gap: 14px; font-weight: 650; font-size: 30px; letter-spacing: -.03em; margin-bottom: 36px }
+.mark svg { width: 34px; height: 34px }
+
+/* Actum: нормативы */
+.norms { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: clamp(56px, 7vw, 88px); border-top: 1px solid var(--line) }
+.norms div { padding: 26px 20px 0 0 }
+.norms b { display: block; font-size: clamp(26px, 2.6vw, 38px); font-weight: 650; letter-spacing: -.03em }
+.norms span { display: block; margin-top: 8px; font-size: 14.5px; line-height: 1.42; color: var(--ink-2); max-width: 15em }
+
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 40px; margin-top: clamp(64px, 8vw, 104px) }
+.feats h3 { font-size: 22px; letter-spacing: -.02em; line-height: 1.2; margin-bottom: 10px }
+.feats p { color: var(--ink-2); font-size: 16px; line-height: 1.55 }
+.ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 48px }
+
+/* Clarify — тёмная секция во всю ширину */
+.dark { background: var(--graphite); color: var(--on-g) }
+.dark .sec__lede, .dark .feats p { color: var(--on-g-2) }
+.dark .fine { color: var(--on-g-3) }
+
+.say { margin-top: clamp(48px, 6vw, 72px); max-width: 760px; padding: 8px; border-radius: 24px; background: var(--graphite-2);
+  box-shadow: inset 0 0 0 1px var(--g-line) }
+.say label { display: block; padding: 12px 16px 0; font-size: 13px; color: var(--on-g-3) }
+.say input { width: 100%; border: 0; outline: 0; background: transparent; color: var(--on-g); padding: 6px 16px 10px;
+  font: 500 clamp(20px, 2.2vw, 28px)/1.3 'Geologica', sans-serif; letter-spacing: -.02em }
+.say:focus-within { box-shadow: inset 0 0 0 1.5px rgba(244, 239, 230, .35) }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; min-height: 52px; padding: 4px 12px 12px }
+.chip { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 14px; border-radius: 999px; font-size: 14.5px;
+  background: rgba(244, 239, 230, .08); color: var(--on-g); animation: pop .35s var(--ease) both }
+.chip i { font-style: normal; color: var(--on-g-3) }
+.chip.title { background: transparent; box-shadow: inset 0 0 0 1px var(--g-line) }
+@keyframes pop { from { opacity: 0; transform: translateY(4px) scale(.96) } }
+@media (prefers-reduced-motion: reduce) { .chip { animation: none } }
+.try { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; color: var(--on-g-3) }
+.try button { border: 0; background: none; color: var(--on-g-2); font: inherit; padding: 4px 10px; border-radius: 999px; cursor: pointer; box-shadow: inset 0 0 0 1px var(--g-line) }
+.try button:hover { color: var(--on-g) }
+
+.shot { margin-top: clamp(64px, 8vw, 104px); border-radius: 18px; overflow: hidden;
+  box-shadow: 0 0 0 1px var(--g-line), 0 60px 120px -50px rgba(0, 0, 0, .8) }
+
+/* Правила */
+.rules { margin-top: clamp(48px, 6vw, 72px) }
+.rule { display: grid; grid-template-columns: 1fr 1.35fr; gap: 40px; padding: 34px 0; border-top: 1px solid var(--line) }
+.rule h3 { font-size: clamp(24px, 2.3vw, 32px); letter-spacing: -.025em; line-height: 1.15 }
+.rule p { color: var(--ink-2); font-size: 17px; max-width: 34em }
+
+/* Подвал */
+.foot { padding: 56px 0 48px; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink-2) }
+.foot__grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px }
+.foot h4 { margin: 0 0 12px; font-size: 14px; font-weight: 600; color: var(--ink) }
+.foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px }
+.foot a:hover { color: var(--ink) }
+.foot__about p { margin-top: 14px; max-width: 26em }
+.foot__base { margin-top: 48px; font-size: 13px; color: var(--ink-3) }
+
+/* --- Узкие экраны ---------------------------------------------------------- */
+@media (max-width: 900px) {
+  .hero__row { flex-direction: column; align-items: flex-start }
+  .assembly { height: auto; padding: 24px 16px 28px; display: grid; gap: 16px; border-radius: 28px }
+  .sheet, .card, .note { position: relative; left: auto; right: auto; top: auto; bottom: auto; width: 100%; transform: none }
+  .sheet { order: 1 } .card { order: 2 } .n-date { order: 3 } .n-ready { order: 4 }
+  .norms { grid-template-columns: 1fr 1fr }
+  .feats { grid-template-columns: 1fr; gap: 32px }
+  .rule { grid-template-columns: 1fr; gap: 10px }
+  .foot__grid { grid-template-columns: 1fr 1fr }
+  .foot__about { grid-column: 1 / -1 }
+}
+@media (max-width: 760px) {
+  .wrap { width: calc(100% - 32px) }
+  .top nav { display: none }
+  .top__bar { gap: 12px }
+  .top .btn { margin-left: auto }
+}
