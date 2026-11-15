@@ -274,7 +274,7 @@
   border-radius: var(--r-window);
 }
 .tabs__track::-webkit-scrollbar { display: none; }
-.tabs__panel { scroll-snap-align: start; scroll-snap-stop: always; }
+.tabs__panel { margin: 0; scroll-snap-align: start; scroll-snap-stop: always; }
 .tabs__panel figcaption { margin-top: var(--s2); color: var(--ink-2); max-width: 40em; }
 .tabs__panel figcaption strong { color: var(--ink); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
