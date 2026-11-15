@@ -15,6 +15,20 @@
   align-items: center;
 }
 .hero__text > * + * { margin-top: var(--s3); }
+
+/* Знак продукта с названием над заголовком: это подпись, чей экран, а не
+   надзаголовок раздела. */
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+.lockup__mark { width: 2rem; height: 2rem; flex: none; }
+.hero__text > .lockup + * { margin-top: var(--s4); }
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
@@ -81,10 +95,11 @@
   animation: enter-rise 600ms var(--ease-out) both;
   animation-delay: var(--d, 0ms);
 }
-[data-enter] .hero__text > :nth-child(1) { --d: 0ms;   --rise: 16px; }
-[data-enter] .hero__text > :nth-child(2) { --d: 80ms;  --rise: 10px; }
-[data-enter] .hero__text > :nth-child(3) { --d: 150ms; --rise: 6px; }
-[data-enter] .hero__text > :nth-child(4) { --d: 200ms; --rise: 0px; }
+[data-enter] .hero__text > :nth-child(1) { --d: 0ms;   --rise: 6px; }
+[data-enter] .hero__text > :nth-child(2) { --d: 40ms;  --rise: 16px; }
+[data-enter] .hero__text > :nth-child(3) { --d: 120ms; --rise: 10px; }
+[data-enter] .hero__text > :nth-child(4) { --d: 190ms; --rise: 6px; }
+[data-enter] .hero__text > :nth-child(5) { --d: 240ms; --rise: 0px; }
 
 [data-enter] .stack .sheet { animation: enter-sheet 900ms var(--ease-out) 160ms both; }
 [data-enter] .stack__back { animation: enter-fade 700ms var(--ease-out) 380ms both; }
