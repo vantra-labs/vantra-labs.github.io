@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Actum — исполнительная документация по 344/пр</title>
+<meta name="description" content="Actum собирает АОСР, реестры материалов и комплект исполнительной по форме 344/пр. Справочник организаций, людей и материалов, импорт старых актов из Word, выгрузка в Word и PDF.">
+<meta name="theme-color" content="#121110">
+<script>if (!location.hash && window.scrollY < 40) document.documentElement.setAttribute('data-enter', '');</script>
+<link rel="canonical" href="https://vantra-labs.github.io/actum/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vantra-labs.github.io/actum/">
+<meta property="og:title" content="Actum — исполнительная без копипасты">
+<meta property="og:description" content="АОСР, реестры и комплект по 344/пр из справочника, который заполняется один раз.">
+<meta property="og:image" content="https://vantra-labs.github.io/assets/og/vantra-og.png">
+<meta property="og:locale" content="ru_RU">
+<link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/favicon-180.png">
+<link rel="preload" href="../assets/fonts/geologica-var.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="../assets/fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/site.css">
+<link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<header class="header" id="header">
+  <div class="header__inner">
+    <a class="brand" translate="no" href="/" aria-label="VANTRA, на главную">
+      <svg class="brand__mark" viewBox="0 0 111 111" fill="currentColor" aria-hidden="true">
+        <path d="M0 43 L0 11 L32 11 L32 22 L11 22 L11 43 Z"/>
+        <path d="M111 32 L111 0 L79 0 L79 11 L100 11 L100 32 Z"/>
+        <path d="M0 79 L0 111 L32 111 L32 100 L11 100 L11 79 Z"/>
+        <path d="M100 79 L100 111 L68 111 L68 100 L89 100 L89 79 Z"/>
+      </svg>
+      VANTRA
+    </a>
+
+    <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Открыть меню">
+      <span class="burger__lines"></span>
+    </button>
+
+    <nav class="nav" id="nav" aria-label="Основная">
+      <a class="nav__link" href="./" aria-current="page">Actum</a>
+      <a class="nav__link" href="../clarify/">Clarify</a>
+      <a class="nav__link" href="../#studiya">Студия</a>
+      <a class="btn btn--primary btn--sm" href="https://github.com/vantra-labs/actum-releases/releases/latest/download/Actum-Setup.exe">Скачать Actum</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="shell hero__grid">
+      <div class="hero__text">
+        <h1 class="h-display">Акты, реестры и&nbsp;комплект по&nbsp;344/пр</h1>
+        <p class="lead">
+          Actum&nbsp;— программа для Windows, в&nbsp;которой исполнительная собирается
+          из&nbsp;справочника объекта. Данные лежат в&nbsp;папке на&nbsp;вашем компьютере,
+          а&nbsp;не&nbsp;на&nbsp;чужом сервере.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" href="https://github.com/vantra-labs/actum-releases/releases/latest/download/Actum-Setup.exe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>Скачать для Windows</a>
+          <a class="btn btn--outline btn--lg" href="#ustanovka">Что нужно для установки</a>
+        </div>
+        <p class="hero__meta">Бесплатно на&nbsp;время бета-теста. Версия 1.0.5, Windows 10 и&nbsp;11, около 100&nbsp;МБ.</p>
+      </div>
+      <div class="hero__visual">
+        <div class="stack" role="img" aria-label="Пример акта освидетельствования скрытых работ № НЭС-03, собранного в Actum">
+          <div class="stack__back stack__back--1"></div>
+          <div class="stack__back stack__back--2"></div>
+          <div class="sheet" aria-hidden="true">
+            <div class="sheet__body">
+              <p class="sheet__title">АКТ<small>освидетельствования скрытых работ № НЭС-03</small></p>
+              <p class="sheet__row"><span>г. Санкт-Петербург</span><span>«28» октября 2026 г.</span></p>
+              <p><span class="sheet__label">Объект капитального строительства:</span> <span class="sheet__u">Жилой комплекс «Пример». Наружные электрические сети 0,4&nbsp;кВ</span></p>
+              <p><span class="sheet__label">Застройщик:</span> <span class="sheet__u">ГКУ «Дирекция строительства Примерного района», ОГРН 1027800000001, ИНН 7800000001</span></p>
+              <p><span class="sheet__label">Лицо, осуществляющее строительство:</span> <span class="sheet__u">АО «СтройПример», ОГРН 1037800000002, ИНН 7800000002</span></p>
+              <p>1. К освидетельствованию предъявлены следующие работы: <span class="sheet__u">обратная засыпка траншеи песком с&nbsp;укладкой сигнальной ленты, участок от ТП-1 до КК-3</span></p>
+              <p>3. При выполнении работ применены: <span class="sheet__u">песок для строительных работ, ГОСТ 8736-2014; лента сигнальная «Осторожно, кабель»</span></p>
+              <p>5. Даты: начала работ <span class="sheet__u">21.10.2026</span>, окончания работ <span class="sheet__u">27.10.2026</span></p>
+              <p>7. Разрешается производство последующих работ: <span class="sheet__u">восстановление благоустройства на&nbsp;участке от ТП-1 до КК-3</span></p>
+              <p>Приложения: <span class="sheet__u">1. Исполнительная схема № НЭС-03. 2. Реестр применяемых материалов № НЭС-03 от 28.10.2026 на&nbsp;1&nbsp;листе.</span></p>
+            </div>
+            <div class="sheet__fade"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kak">
+    <div class="shell">
+      <div class="section-head">
+        <h2 class="h-2">Как это работает</h2>
+        <p>Четыре шага от пустого объекта до&nbsp;комплекта. Справочник заполняется по&nbsp;ходу работы, отдельно садиться за&nbsp;него не&nbsp;нужно.</p>
+      </div>
+      <ol class="steps">
+        <li><h3 class="h-3">Создайте объект</h3><p>Мастер спросит название, организации и&nbsp;представителей. Или загрузите готовые акты из&nbsp;Word: он разберёт их сам.</p></li>
+        <li><h3 class="h-3">Заведите материалы</h3><p>Материал и&nbsp;его поставки с&nbsp;паспортами и&nbsp;сертификатами. Сканы прикладываются прямо к&nbsp;поставке.</p></li>
+        <li><h3 class="h-3">Добавляйте акты</h3><p>Описание работ, даты и&nbsp;материалы. Организации и&nbsp;подписи акт берёт из&nbsp;справочника на&nbsp;свою дату.</p></li>
+        <li><h3 class="h-3">Соберите комплект</h3><p>Акты и&nbsp;реестры в&nbsp;Word и&nbsp;PDF, том со&nbsp;сканами документов о&nbsp;качестве.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--raised" id="ekrany">
+    <div class="shell" data-tabs>
+      <div class="section-head">
+        <h2 class="h-2">Как это выглядит</h2>
+        <p>Снимки Actum 1.0.5 на&nbsp;демо-объекте. Ничего не&nbsp;дорисовано.</p>
+      </div>
+      <div class="tabs__list" role="tablist" aria-label="Экраны Actum">
+        <button class="tabs__tab" role="tab" id="atab-1" aria-controls="apanel-1" aria-selected="true">Объект</button>
+        <button class="tabs__tab" role="tab" id="atab-2" aria-controls="apanel-2" aria-selected="false" tabindex="-1">Акт</button>
+        <button class="tabs__tab" role="tab" id="atab-3" aria-controls="apanel-3" aria-selected="false" tabindex="-1">Люди и приказы</button>
+        <button class="tabs__tab" role="tab" id="atab-4" aria-controls="apanel-4" aria-selected="false" tabindex="-1">Материалы</button>
+      </div>
+      <div class="tabs__track">
+        <figure class="tabs__panel" role="tabpanel" id="apanel-1" aria-labelledby="atab-1">
+          <img class="shot" src="../assets/shots/actum-object-900.webp" srcset="../assets/shots/actum-object-900.webp 900w, ../assets/shots/actum-object-1600.webp 1406w" sizes="(min-width: 860px) 55vw, 92vw" width="1406" height="906" loading="lazy" decoding="async" alt="Экран объекта в Actum: комплект АОСР с тремя актами, готовность объекта и список первых шагов.">
+          <figcaption><strong>Объект.</strong> Комплекты, сколько актов подписано и что сделать дальше.</figcaption>
+        </figure>
+        <figure class="tabs__panel" role="tabpanel" id="apanel-2" aria-labelledby="atab-2">
+          <img class="shot" src="../assets/shots/actum-act-900.webp" srcset="../assets/shots/actum-act-900.webp 900w, ../assets/shots/actum-act-1600.webp 1406w" sizes="(min-width: 860px) 55vw, 92vw" width="1406" height="906" loading="lazy" decoding="async" alt="Акт № НЭС-03 в Actum: список актов, лист акта и замечание стройконтроля справа.">
+          <figcaption><strong>Акт.</strong> Лист собирается рядом с формой. Если что-то не так, Actum скажет до печати, а не после.</figcaption>
+        </figure>
+        <figure class="tabs__panel" role="tabpanel" id="apanel-3" aria-labelledby="atab-3">
+          <img class="shot" src="../assets/shots/actum-people-900.webp" srcset="../assets/shots/actum-people-900.webp 900w, ../assets/shots/actum-people-1600.webp 1406w" sizes="(min-width: 860px) 55vw, 92vw" width="1406" height="906" loading="lazy" decoding="async" alt="Раздел «Люди и приказы»: представители всех сторон с приказами и датами.">
+          <figcaption><strong>Люди и приказы.</strong> Кто подписывает и с какого числа. Строка подписанта в акте собирается отсюда сама.</figcaption>
+        </figure>
+        <figure class="tabs__panel" role="tabpanel" id="apanel-4" aria-labelledby="atab-4">
+          <img class="shot" src="../assets/shots/actum-materials-900.webp" srcset="../assets/shots/actum-materials-900.webp 900w, ../assets/shots/actum-materials-1600.webp 1406w" sizes="(min-width: 860px) 55vw, 92vw" width="1406" height="906" loading="lazy" decoding="async" alt="Раздел «Материалы»: трубы, песок и сигнальная лента с паспортами, сертификатами и декларациями.">
+          <figcaption><strong>Материалы.</strong> Материалы с поставками и документами о качестве. Из них собирается реестр к акту.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <h2 class="h-2">Данные под присмотром</h2>
+        <p>Исполнительная копится месяцами, и&nbsp;потерять её нельзя. Поэтому несколько вещей Actum делает сам, не&nbsp;спрашивая.</p>
+      </div>
+      <div class="reqs">
+        <div><h3 class="h-3">Всё в&nbsp;вашей папке</h3><p>Объект&nbsp;— это обычная папка на&nbsp;диске. Её можно скопировать, перенести или положить в&nbsp;облако.</p></div>
+        <div><h3 class="h-3">Копии каждый день</h3><p>Копия объекта делается при открытии и&nbsp;закрытии в&nbsp;папку «Документы\Actum&nbsp;— копии» и&nbsp;хранится два месяца.</p></div>
+        <div><h3 class="h-3">Обновления сами</h3><p>Новая версия ставится в&nbsp;фоне. После обновления Actum покажет, что появилось, прямо на&nbsp;своих местах.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--raised" id="ustanovka">
+    <div class="shell">
+      <div class="section-head">
+        <h2 class="h-2">До скачивания</h2>
+        <p>Чтобы после установки не&nbsp;было сюрпризов.</p>
+      </div>
+      <div class="reqs">
+        <div><h3 class="h-3">Windows 10 и&nbsp;11</h3><p>Версий для macOS и&nbsp;Linux нет.</p></div>
+        <div><h3 class="h-3">Word или LibreOffice</h3><p>Нужен для PDF, печати и&nbsp;точной разметки листа. Без него акты собираются в&nbsp;Word-файлы.</p></div>
+        <div><h3 class="h-3">Бесплатно, идёт бета</h3><p>Программа рабочая, но&nbsp;ещё растёт. Об&nbsp;ошибке или идее можно написать прямо из&nbsp;программы, через форму обратной связи.</p></div>
+      </div>
+      <div class="alert" role="note">
+        <svg class="alert__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 2.8 19.5h18.4z"/><path d="M12 10v4.5"/><path d="M12 17.2v.3"/></svg>
+        <div>
+          <p class="alert__title">Windows покажет синее окно. Так и&nbsp;должно быть</p>
+          <p>У&nbsp;установщика пока нет платной цифровой подписи, поэтому SmartScreen его не&nbsp;узнаёт. Нажмите <kbd>Подробнее</kbd>, затем <kbd>Выполнить в&nbsp;любом случае</kbd>. Это нужно один раз: обновления дальше ставятся сами.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell studio">
+      <h2 class="h-2">Бета-тест, в&nbsp;котором вас слышно</h2>
+      <div class="studio__text">
+        <p>
+          Actum бесплатный, пока идёт бета. Взамен нужны ваши замечания: что неудобно,
+          чего не&nbsp;хватает, где программа ошиблась.
+        </p>
+        <p>
+          Каждое принятое замечание попадает в&nbsp;пост об&nbsp;исправлении: что заметили,
+          что поменяли и&nbsp;кто подсказал. Имя или ник указываем только с&nbsp;вашего
+          согласия, без него&nbsp;— анонимно.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--raised">
+    <div class="shell">
+      <div class="section-head"><h2 class="h-2">Вопросы</h2></div>
+      <div class="faq">
+        <details><summary>Можно перейти на&nbsp;Actum посреди объекта?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq__answer"><p>Да. Загрузите готовые акты из&nbsp;Word по&nbsp;форме 344/пр: они станут актами комплекта, которые можно править, а&nbsp;организации, люди и&nbsp;материалы попадут в&nbsp;справочники.</p></div></details>
+        <details><summary>По какой форме собираются акты?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq__answer"><p>АОСР по&nbsp;форме из&nbsp;приказа Минстроя России № 344/пр. К&nbsp;каждому акту собирается реестр применяемых материалов.</p></div></details>
+        <details><summary>Куда уходят мои данные?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq__answer"><p>Никуда: объект хранится в&nbsp;папке на&nbsp;вашем компьютере. Анонимная статистика отправляется, только если вы её разрешили, и&nbsp;содержимого актов в&nbsp;ней нет.</p><p>Подробно: <a class="link" href="privacy/">политика конфиденциальности Actum</a>.</p></div></details>
+        <details><summary>Сколько стоит?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq__answer"><p>Пока идёт бета-тест, Actum бесплатный.</p></div></details>
+        <details><summary>Нужен ли интернет?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq__answer"><p>Для работы нет. Интернет нужен, чтобы скачать установщик и&nbsp;получать обновления.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell closing">
+      <h2 class="h-2">Попробуйте на&nbsp;своём объекте</h2>
+      <p>Загрузите пару старых актов и&nbsp;посмотрите, что из&nbsp;них соберётся. Не&nbsp;подойдёт&nbsp;— удаляется как обычная программа.</p>
+      <a class="btn btn--primary btn--lg" href="https://github.com/vantra-labs/actum-releases/releases/latest/download/Actum-Setup.exe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>Скачать Actum</a>
+      <p class="meta">Версия 1.0.5, около 100&nbsp;МБ</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div class="footer__about">
+        <a class="brand" translate="no" href="/" aria-label="VANTRA, на главную">
+          <svg class="brand__mark" viewBox="0 0 111 111" fill="currentColor" aria-hidden="true">
+            <path d="M0 43 L0 11 L32 11 L32 22 L11 22 L11 43 Z"/>
+            <path d="M111 32 L111 0 L79 0 L79 11 L100 11 L100 32 Z"/>
+            <path d="M0 79 L0 111 L32 111 L32 100 L11 100 L11 79 Z"/>
+            <path d="M100 79 L100 111 L68 111 L68 100 L89 100 L89 79 Z"/>
+          </svg>
+          VANTRA
+        </a>
+        <p>Небольшая студия. Большие проекты.</p>
+      </div>
+      <div>
+        <h2 class="footer__title">Продукты</h2>
+        <ul class="footer__list">
+          <li><a href="./">Actum</a></li>
+          <li><a href="../clarify/">Clarify</a></li>
+          <li><a href="../app/" target="_blank" rel="noopener">Clarify в&nbsp;браузере</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer__title">Связь</h2>
+        <ul class="footer__list">
+          <li><a href="https://t.me/ClarifyPlan" target="_blank" rel="noopener">Канал в&nbsp;Telegram</a></li>
+          <li><a href="https://t.me/ClarifyHelp_bot" target="_blank" rel="noopener">Поддержка Clarify</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 VANTRA</span>
+      <a href="privacy/">Конфиденциальность Actum</a>
+      <a href="../privacy.html">Конфиденциальность Clarify</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/site.js" defer></script>
+</body>
+</html>

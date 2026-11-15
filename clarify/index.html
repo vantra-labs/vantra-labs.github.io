@@ -5,30 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Clarify — планировщик задач для Windows и телефона</title>
 <meta name="description" content="Напишите или скажите «завтра в 18:00 забрать посылку» — Clarify сам поставит дату, время и метку. Работает на компьютере и в телефоне, в том числе без интернета. Бесплатно.">
-
+<meta name="theme-color" content="#121110">
+<script>if (!location.hash && window.scrollY < 40) document.documentElement.setAttribute('data-enter', '');</script>
 <link rel="canonical" href="https://vantra-labs.github.io/clarify/">
-
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vantra-labs.github.io/clarify/">
 <meta property="og:title" content="Clarify — планировщик задач для Windows и телефона">
 <meta property="og:description" content="Задачи из обычной фразы. Дата, время и метка встают по местам сами.">
-<!-- Абсолютный адрес обязателен: с относительным путём Telegram и ВК
-     превью не собирают вовсе, ссылка приходит голой. -->
 <meta property="og:image" content="https://vantra-labs.github.io/assets/og/clarify-og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
-
 <link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/favicon-180.png">
-
-<!-- Начертания первого экрана: заголовок и текст под ним. Остальные веса
-     подтягиваются по мере надобности. -->
-<link rel="preload" href="../assets/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/geologica-var.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="../assets/fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-
 <link rel="stylesheet" href="../css/site.css">
 <link rel="stylesheet" href="../css/pages.css">
 </head>
@@ -37,364 +30,172 @@
 
 <header class="header" id="header">
   <div class="header__inner">
-    <a class="brand" href="../">
-      <svg class="brand__mark" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
-        <path d="M16 8.5 L23 8.5 A4 4 0 0 1 27 12.5 L27 51.5 A4 4 0 0 1 23 55.5 L16 55.5 A12 12 0 0 1 4 43.5 L4 20.5 A12 12 0 0 1 16 8.5 Z" transform="translate(0 -6)"/>
-        <path d="M41 8.5 L48 8.5 A12 12 0 0 1 60 20.5 L60 43.5 A12 12 0 0 1 48 55.5 L41 55.5 A4 4 0 0 1 37 51.5 L37 12.5 A4 4 0 0 1 41 8.5 Z" transform="translate(0 6)"/>
+    <a class="brand" translate="no" href="/" aria-label="VANTRA, на главную">
+      <svg class="brand__mark" viewBox="0 0 111 111" fill="currentColor" aria-hidden="true">
+        <path d="M0 43 L0 11 L32 11 L32 22 L11 22 L11 43 Z"/>
+        <path d="M111 32 L111 0 L79 0 L79 11 L100 11 L100 32 Z"/>
+        <path d="M0 79 L0 111 L32 111 L32 100 L11 100 L11 79 Z"/>
+        <path d="M100 79 L100 111 L68 111 L68 100 L89 100 L89 79 Z"/>
       </svg>
-      Clarify
-      <span class="brand__sub">VANTRA</span>
+      VANTRA
     </a>
 
-    <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Меню">
-      <span></span><span></span><span></span>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Открыть меню">
+      <span class="burger__lines"></span>
     </button>
 
     <nav class="nav" id="nav" aria-label="Основная">
-      <a href="#umeet">Возможности</a>
-      <a href="#ekrany">Экраны</a>
-      <a href="#telefon">В телефоне</a>
-      <a href="#ustanovka">Установка</a>
-      <a class="btn btn--primary" href="https://github.com/vantra-labs/clarify/releases/latest/download/Clarify_Setup.exe">
-        Скачать
-      </a>
+      <a class="nav__link" href="../actum/">Actum</a>
+      <a class="nav__link" href="./" aria-current="page">Clarify</a>
+      <a class="nav__link" href="../#studiya">Студия</a>
+      <a class="btn btn--primary btn--sm" href="https://github.com/vantra-labs/clarify/releases/latest/download/Clarify_Setup.exe">Скачать Clarify</a>
     </nav>
   </div>
 </header>
 
 <main id="main">
 
-  <!-- ================= Первый экран ================= -->
   <section class="hero">
-    <div class="shell hero__grid">
-      <div>
-        <h1>Пишите дела так, как говорите</h1>
-        <p class="hero__lead">
-          Clarify разберёт фразу на дату, время и метку сам. Работает на
-          компьютере и в телефоне, в том числе без интернета.
+    <div class="shell hero__grid hero__grid--wide">
+      <div class="hero__text">
+        <h1 class="h-display">Пишите дела так, как говорите</h1>
+        <p class="lead">
+          Clarify разберёт фразу на&nbsp;дату, время и&nbsp;метку сам. Работает
+          на&nbsp;компьютере и&nbsp;в&nbsp;телефоне, в&nbsp;том числе без интернета.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--primary btn--lg" href="https://github.com/vantra-labs/clarify/releases/latest/download/Clarify_Setup.exe">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/>
-            </svg>
-            Скачать для Windows
-          </a>
-          <a class="btn btn--ghost btn--lg" href="#ekrany">Посмотреть экраны</a>
+          <a class="btn btn--primary btn--lg" href="https://github.com/vantra-labs/clarify/releases/latest/download/Clarify_Setup.exe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>Скачать для Windows</a>
+          <a class="btn btn--outline btn--lg" href="../app/" target="_blank" rel="noopener">Открыть в&nbsp;браузере</a>
         </div>
+        <p class="hero__meta">Бесплатно, без подписки и&nbsp;рекламы. Около 40&nbsp;МБ.</p>
       </div>
-
-      <div class="hero__shot">
-        <!-- Снимок идёт за темой посетителя: у кого светлая система, тот
-             видит светлое приложение. Иначе на бумажном фоне висит чёрное
-             окно, и человек не понимает, что светлая тема вообще есть. -->
-        <picture>
-          <source media="(prefers-color-scheme: light)" type="image/webp"
-                  srcset="../assets/shots/light-760.webp 760w,
-                          ../assets/shots/light-1100.webp 1100w,
-                          ../assets/shots/light-1600.webp 1600w"
-                  sizes="(min-width: 900px) 58vw, 100vw">
-          <source type="image/webp"
-                  srcset="../assets/shots/list-760.webp 760w,
-                          ../assets/shots/list-1100.webp 1100w,
-                          ../assets/shots/list-1600.webp 1600w"
-                  sizes="(min-width: 900px) 58vw, 100vw">
-          <img src="../assets/shots/list-1100.jpg"
-               width="1600" height="1000"
-               fetchpriority="high" decoding="async"
-               alt="Окно Clarify со списком задач: у каждой строки срок, метка и подсветка по важности, просроченные выделены красным.">
-        </picture>
+      <div class="hero__visual hero__visual--window">
+        <div class="window hero__window">
+          <picture>
+            <source type="image/webp"
+                    srcset="../assets/shots/list-760.webp 760w, ../assets/shots/list-1100.webp 1100w, ../assets/shots/list-1600.webp 1600w"
+                    sizes="(min-width: 900px) 50vw, 92vw">
+            <img src="../assets/shots/list-1100.jpg" width="1600" height="1000" fetchpriority="high" decoding="async"
+                 alt="Окно Clarify со списком задач: у каждой строки срок, метка и подсветка по важности, просроченные выделены красным.">
+          </picture>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= Что умеет ================= -->
-  <section class="section section--edge" id="umeet">
+  <section class="section" id="umeet">
     <div class="shell">
       <div class="section-head">
-        <h2>Меньше действий на одну задачу</h2>
-        <p>
-          Записать дело должно занимать секунды, иначе его просто не запишут,
-          а вспомнят в тот момент, когда уже поздно. Отсюда почти всё, что
-          здесь есть.
-        </p>
+        <h2 class="h-2">Одна строка вместо анкеты</h2>
+        <p>Записать дело должно занимать секунды, иначе его не&nbsp;запишут, а&nbsp;вспомнят, когда уже поздно. Наберите фразу целиком, поля заполнять не&nbsp;нужно.</p>
       </div>
-
-      <div class="tiles">
-        <article class="tile tile--wide reveal">
-          <h3>Одна строка вместо анкеты</h3>
-          <p>
-            Наберите фразу целиком, как написали бы её в заметке. Дата, время
-            и метка встанут по местам сами, поля заполнять не нужно.
-          </p>
-
-          <!-- Разбор фразы: не снимок экрана, а схема. Показывает ровно то,
-               что происходит внутри, и объясняет это быстрее абзаца текста. -->
-          <div class="parse" aria-hidden="true">
-            <p class="parse__phrase">
-              <span class="parse__part" data-role="дата">завтра</span>
-              в
-              <span class="parse__part" data-role="время">15:00</span>
-              позвонить
-              <span class="parse__part" data-role="метка">#работа</span>
-            </p>
-          </div>
-          <p class="visually-hidden">
-            Из фразы «завтра в 15:00 позвонить #работа» приложение достаёт
-            дату «завтра», время «15:00» и метку «работа».
-          </p>
-        </article>
-
-        <article class="tile reveal">
-          <h3>Голосом, если руки заняты</h3>
-          <p class="tile__quote">«в пятницу забрать документы из школы»</p>
-          <p>Нажмите микрофон и скажите вслух. Разберётся так же, как с текстом.</p>
-        </article>
-
-        <article class="tile reveal">
-          <h3>Задачи из переписки</h3>
-          <p>
-            Отправьте боту сообщение или голосовое — задача появится в
-            приложении. Отметить сделанной можно кнопкой прямо в чате.
-          </p>
-        </article>
-
-        <article class="tile reveal">
-          <h3>Повторяющиеся дела</h3>
-          <p>
-            Мусор по вечерам, оплата в начале месяца. Задача возвращается
-            сама, заводить её заново не нужно.
-          </p>
-        </article>
-
-        <article class="tile reveal">
-          <h3>Видно, что застряло</h3>
-          <p>
-            Дела, которые лежат без движения неделями, и дни, на которые
-            записано больше, чем поместится. Приложение говорит об этом
-            заранее.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Галерея ================= -->
-  <section class="section section--edge" id="ekrany">
-    <div class="shell">
-      <div class="section-head">
-        <h2>Как это выглядит</h2>
-        <p>Снимки из рабочей сборки. Ничего не дорисовано и не подретушировано.</p>
-      </div>
-    </div>
-
-    <div class="gallery" data-gallery>
-      <!-- Лента прокручивается по-настоящему, средствами браузера. Поэтому
-           на телефоне работает обычный свайп с инерцией, а на компьютере
-           колесо, трекпад и клавиши. -->
-      <div class="gallery__track" data-track tabindex="0" role="region"
-           aria-label="Экраны приложения, пролистываются вбок">
-
-        <figure class="slide">
-          <div class="slide__media">
-            <picture>
-              <source type="image/webp" srcset="../assets/shots/list-760.webp 760w, ../assets/shots/list-1100.webp 1100w, ../assets/shots/list-1600.webp 1600w" sizes="(min-width: 1100px) 880px, 82vw">
-              <img src="../assets/shots/list-1100.jpg" width="1600" height="1000" loading="lazy" decoding="async" alt="Список всех задач: колонки со сроком, повтором и меткой выровнены, просроченные строки красные.">
-            </picture>
-          </div>
-          <figcaption>
-            <p class="slide__title">Весь список</p>
-            <p class="slide__text">Срок, повтор и метка стоят каждый в своей колонке и не пляшут от строки к строке. Просроченное видно, не вчитываясь.</p>
-          </figcaption>
-        </figure>
-
-        <figure class="slide">
-          <div class="slide__media">
-            <picture>
-              <source type="image/webp" srcset="../assets/shots/today-760.webp 760w, ../assets/shots/today-1100.webp 1100w, ../assets/shots/today-1600.webp 1600w" sizes="(min-width: 1100px) 880px, 82vw">
-              <img src="../assets/shots/today-1100.jpg" width="1600" height="1000" loading="lazy" decoding="async" alt="Экран «Мой день»: четыре задачи на сегодня со временем и метками.">
-            </picture>
-          </div>
-          <figcaption>
-            <p class="slide__title">Мой день</p>
-            <p class="slide__text">Только то, что на сегодня. Всё остальное не отвлекает и ждёт своей даты.</p>
-          </figcaption>
-        </figure>
-
-        <figure class="slide">
-          <div class="slide__media">
-            <picture>
-              <source type="image/webp" srcset="../assets/shots/week-760.webp 760w, ../assets/shots/week-1100.webp 1100w, ../assets/shots/week-1600.webp 1600w" sizes="(min-width: 1100px) 880px, 82vw">
-              <img src="../assets/shots/week-1100.jpg" width="1600" height="1000" loading="lazy" decoding="async" alt="Ближайшая неделя семью колонками, в каждой задачи своего дня.">
-            </picture>
-          </div>
-          <figcaption>
-            <p class="slide__title">Неделя целиком</p>
-            <p class="slide__text">Семь дней рядом. Сразу понятно, где пусто, а где вы на себя понадеялись.</p>
-          </figcaption>
-        </figure>
-
-        <figure class="slide">
-          <div class="slide__media">
-            <picture>
-              <source type="image/webp" srcset="../assets/shots/create-760.webp 760w, ../assets/shots/create-1100.webp 1100w, ../assets/shots/create-1600.webp 1600w" sizes="(min-width: 1100px) 880px, 82vw">
-              <img src="../assets/shots/create-1100.jpg" width="1600" height="1000" loading="lazy" decoding="async" alt="Окно новой задачи: важность, дата, время, повтор, метки, заметка и чек-лист на одном экране.">
-            </picture>
-          </div>
-          <figcaption>
-            <p class="slide__title">Когда нужно подробно</p>
-            <p class="slide__text">Важность, срок, повтор, метки, заметка и подзадачи. Всё на одном экране, ничего не спрятано за вкладками.</p>
-          </figcaption>
-        </figure>
-
-        <figure class="slide">
-          <div class="slide__media">
-            <picture>
-              <source type="image/webp" srcset="../assets/shots/stats-760.webp 760w, ../assets/shots/stats-1100.webp 1100w, ../assets/shots/stats-1600.webp 1600w" sizes="(min-width: 1100px) 880px, 82vw">
-              <img src="../assets/shots/stats-1100.jpg" width="1600" height="1000" loading="lazy" decoding="async" alt="Статистика: выполнено за неделю, доля закрытых в срок, серия дней подряд и разбор состояния задач.">
-            </picture>
-          </div>
-          <figcaption>
-            <p class="slide__title">Без самообмана</p>
-            <p class="slide__text">Сколько закрыто, сколько в срок, что зависло. Цифры неприятные, но лучше знать их сейчас.</p>
-          </figcaption>
-        </figure>
-
-        <figure class="slide">
-          <div class="slide__media">
-            <picture>
-              <source type="image/webp" srcset="../assets/shots/light-760.webp 760w, ../assets/shots/light-1100.webp 1100w, ../assets/shots/light-1600.webp 1600w" sizes="(min-width: 1100px) 880px, 82vw">
-              <img src="../assets/shots/light-1100.jpg" width="1600" height="1000" loading="lazy" decoding="async" alt="Тот же список задач в светлой теме на тёплом бумажном фоне.">
-            </picture>
-          </div>
-          <figcaption>
-            <p class="slide__title">Светлая и тёмная</p>
-            <p class="slide__text">Переключается вручную или сама, вслед за системой, если тема меняется по расписанию.</p>
-          </figcaption>
-        </figure>
-      </div>
-
-      <div class="shell gallery__controls">
-        <button class="gallery__arrow" type="button" data-prev aria-label="Предыдущий экран">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
-        </button>
-        <button class="gallery__arrow" type="button" data-next aria-label="Следующий экран">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
-        </button>
-        <div class="gallery__dots" data-dots></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Телефон ================= -->
-  <section class="section section--edge" id="telefon">
-    <div class="shell phone-block">
-      <div class="phone-block__shot reveal">
-        <picture>
-          <source type="image/webp" srcset="../assets/shots/phone-440.webp">
-          <img src="../assets/shots/phone-440.jpg" width="440" height="900" loading="lazy" decoding="async" alt="Clarify на телефоне: день расписан по часам, внизу панель с разделами.">
-        </picture>
-      </div>
-
-      <div>
-        <h2>В телефоне — без установки</h2>
-        <p class="phone-block__lead">
-          Откройте сайт приложения в браузере и добавьте на главный экран.
-          Дальше он открывается как обычное приложение, отдельной иконкой.
-          Это не уменьшенная копия окна с компьютера: на телефоне свой экран
-          дня, расписанный по часам.
-        </p>
-
-        <ul class="facts">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            <span><b>Задачи общие.</b> Отметили на компьютере — через секунду отмечено и в телефоне.</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            <span><b>Без интернета тоже работает.</b> Изменения копятся и уходят на сервер, когда связь вернётся. Ничего не пропадает в метро.</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            <span><b>Телеграм-бот рядом.</b> Когда открывать приложение лень, задачу можно кинуть боту прямо из переписки.</span>
-          </li>
-        </ul>
-
-        <div class="hero__actions">
-          <a class="btn btn--ghost" href="https://vantra-labs.github.io/app/" target="_blank" rel="noopener">
-            Открыть в браузере
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Перед установкой ================= -->
-  <section class="section section--edge" id="ustanovka">
-    <div class="shell">
-      <div class="section-head">
-        <h2>Что нужно знать до скачивания</h2>
-        <p>Чтобы ничего из этого не стало сюрпризом после.</p>
-      </div>
-
-      <dl class="install">
-        <div class="install__item">
-          <dt>Windows 10 и 11</dt>
-          <dd>Версий для macOS и Linux пока нет. На них остаётся браузер.</dd>
-        </div>
-        <div class="install__item">
-          <dt>Права администратора не нужны</dt>
-          <dd>Ставится в вашу папку пользователя. Рабочий компьютер не будет против.</dd>
-        </div>
-        <div class="install__item">
-          <dt>Нужен аккаунт</dt>
-          <dd>Через Яндекс или по ссылке на почту. Без него задачи негде хранить и нечем синхронизировать.</dd>
-        </div>
-        <div class="install__item">
-          <dt>Бесплатно</dt>
-          <dd>Подписки нет, оплаты внутри нет, рекламы нет.</dd>
-        </div>
-      </dl>
-
-      <div class="warnbox">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><path d="M11 12h1v4h1"/>
-        </svg>
-        <div>
-          <h3>Windows покажет синее окно. Так и должно быть</h3>
-          <p>
-            При запуске установщика появится предупреждение SmartScreen:
-            «Система Windows защитила ваш компьютер». Это не значит, что с
-            файлом что-то не так. Так Windows встречает любую программу без
-            платной цифровой подписи, а подпись стоит десятки тысяч рублей в
-            год и пока не куплена.
-          </p>
-          <p>
-            Чтобы продолжить: <kbd>Подробнее</kbd>, затем
-            <kbd>Выполнить в любом случае</kbd>. Если такое положение вещей вас
-            не устраивает, это нормально — откройте версию в браузере, там
-            ничего скачивать не нужно.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Итог ================= -->
-  <section class="section section--edge">
-    <div class="shell closing">
-      <h2>Попробуйте на своих делах</h2>
-      <p>
-        Десяти минут хватит, чтобы понять, ваше это или нет. Если нет,
-        удаляется обычным способом и ничего после себя не оставляет.
+      <p class="parse" aria-hidden="true">
+        <span class="parse__part" data-role="дата">завтра</span>
+        в&nbsp;<span class="parse__part" data-role="время">15:00</span>
+        позвонить
+        <span class="parse__part" data-role="метка">#работа</span>
       </p>
-      <a class="btn btn--primary btn--lg" href="https://github.com/vantra-labs/clarify/releases/latest/download/Clarify_Setup.exe">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/>
-        </svg>
-        Скачать для Windows
-      </a>
-      <p class="closing__note">Установщик, около 40 МБ</p>
+      <p class="visually-hidden">Из фразы «завтра в 15:00 позвонить #работа» приложение достаёт дату «завтра», время «15:00» и метку «работа».</p>
+
+      <div class="reqs reqs--4 features">
+        <div><h3 class="h-3">Голосом</h3><p>Нажмите микрофон и&nbsp;скажите: «в&nbsp;пятницу забрать документы из&nbsp;школы». Разберётся так же, как текст.</p></div>
+        <div><h3 class="h-3">Из переписки</h3><p>Отправьте боту сообщение или голосовое&nbsp;— задача появится в&nbsp;приложении. Отметить сделанной можно прямо в&nbsp;чате.</p></div>
+        <div><h3 class="h-3">По&nbsp;кругу</h3><p>Мусор по&nbsp;вечерам, оплата в&nbsp;начале месяца. Задача возвращается сама, заводить её заново не&nbsp;нужно.</p></div>
+        <div><h3 class="h-3">Видно, что застряло</h3><p>Дела без движения неделями и&nbsp;дни, на&nbsp;которые записано больше, чем поместится. Clarify скажет заранее.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--raised" id="ekrany">
+    <div class="shell" data-tabs>
+      <div class="section-head">
+        <h2 class="h-2">Как это выглядит</h2>
+        <p>Снимки из&nbsp;рабочей сборки. Ничего не&nbsp;дорисовано.</p>
+      </div>
+      <div class="tabs__list" role="tablist" aria-label="Экраны Clarify">
+        <button class="tabs__tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true">Весь список</button>
+        <button class="tabs__tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1">Мой день</button>
+        <button class="tabs__tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1">Неделя</button>
+        <button class="tabs__tab" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" tabindex="-1">Новая задача</button>
+        <button class="tabs__tab" role="tab" id="tab-5" aria-controls="panel-5" aria-selected="false" tabindex="-1">Статистика</button>
+      </div>
+      <div class="tabs__track">
+        <figure class="tabs__panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1">
+          <div class="window"><img src="../assets/shots/list-1100.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Список всех задач: колонки со сроком, повтором и меткой выровнены, просроченные строки красные."></div>
+          <figcaption><strong>Весь список.</strong> Срок, повтор и&nbsp;метка стоят каждый в&nbsp;своей колонке. Просроченное видно, не&nbsp;вчитываясь.</figcaption>
+        </figure>
+        <figure class="tabs__panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2">
+          <div class="window"><img src="../assets/shots/today-1100.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Экран «Мой день»: четыре задачи на сегодня со временем и метками."></div>
+          <figcaption><strong>Мой день.</strong> Только то, что на&nbsp;сегодня. Остальное ждёт своей даты.</figcaption>
+        </figure>
+        <figure class="tabs__panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3">
+          <div class="window"><img src="../assets/shots/week-1100.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Ближайшая неделя семью колонками, в каждой задачи своего дня."></div>
+          <figcaption><strong>Неделя.</strong> Семь дней рядом. Сразу видно, где пусто, а&nbsp;где вы на&nbsp;себя понадеялись.</figcaption>
+        </figure>
+        <figure class="tabs__panel" role="tabpanel" id="panel-4" aria-labelledby="tab-4">
+          <div class="window"><img src="../assets/shots/create-1100.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Окно новой задачи: важность, дата, время, повтор, метки, заметка и чек-лист на одном экране."></div>
+          <figcaption><strong>Новая задача.</strong> Важность, срок, повтор, метки, заметка и&nbsp;подзадачи на&nbsp;одном экране.</figcaption>
+        </figure>
+        <figure class="tabs__panel" role="tabpanel" id="panel-5" aria-labelledby="tab-5">
+          <div class="window"><img src="../assets/shots/stats-1100.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Статистика: выполнено за неделю, доля закрытых в срок, серия дней подряд и разбор состояния задач."></div>
+          <figcaption><strong>Статистика.</strong> Сколько закрыто, сколько в&nbsp;срок, что зависло. Лучше знать это сейчас.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="telefon">
+    <div class="shell duo">
+      <div class="window duo__phone unveil">
+        <img src="../assets/shots/phone-440.webp" width="440" height="900" loading="lazy" decoding="async" alt="Clarify на телефоне: день расписан по часам, внизу панель с разделами.">
+      </div>
+      <div class="duo__text">
+        <h2 class="h-2">В&nbsp;телефоне без установки</h2>
+        <p>
+          Откройте приложение в&nbsp;браузере и&nbsp;добавьте на&nbsp;главный экран.
+          Дальше оно открывается отдельной иконкой. На&nbsp;телефоне свой экран дня,
+          расписанный по&nbsp;часам.
+        </p>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><strong>Задачи общие.</strong> Отметили на&nbsp;компьютере&nbsp;— через секунду отмечено и&nbsp;в&nbsp;телефоне.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><strong>Без интернета тоже.</strong> Изменения копятся и&nbsp;уходят на&nbsp;сервер, когда связь вернётся.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><strong>Бот рядом.</strong> Когда открывать приложение лень, задачу можно кинуть боту прямо из&nbsp;переписки.</span></li>
+        </ul>
+        <div class="product__actions">
+          <a class="btn btn--outline" href="../app/" target="_blank" rel="noopener">Открыть в&nbsp;браузере</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--raised" id="ustanovka">
+    <div class="shell">
+      <div class="section-head">
+        <h2 class="h-2">До скачивания</h2>
+        <p>Чтобы ничего из&nbsp;этого не&nbsp;стало сюрпризом после.</p>
+      </div>
+      <div class="reqs reqs--4">
+        <div><h3 class="h-3">Windows 10 и&nbsp;11</h3><p>Версий для macOS и&nbsp;Linux нет. На&nbsp;них остаётся браузер.</p></div>
+        <div><h3 class="h-3">Без прав администратора</h3><p>Ставится в&nbsp;вашу папку пользователя. Рабочий компьютер не&nbsp;будет против.</p></div>
+        <div><h3 class="h-3">Нужен аккаунт</h3><p>Через Яндекс или по&nbsp;ссылке на&nbsp;почту. Без него задачам негде храниться.</p></div>
+        <div><h3 class="h-3">Бесплатно</h3><p>Подписки нет, оплаты внутри нет, рекламы нет.</p></div>
+      </div>
+      <div class="alert" role="note">
+        <svg class="alert__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 2.8 19.5h18.4z"/><path d="M12 10v4.5"/><path d="M12 17.2v.3"/></svg>
+        <div>
+          <p class="alert__title">Windows покажет синее окно. Так и&nbsp;должно быть</p>
+          <p>Так Windows встречает любую программу без платной цифровой подписи, а&nbsp;подпись стоит десятки тысяч рублей в&nbsp;год. Нажмите <kbd>Подробнее</kbd>, затем <kbd>Выполнить в&nbsp;любом случае</kbd>. Не&nbsp;хотите&nbsp;— откройте версию в&nbsp;браузере, там ничего скачивать не&nbsp;нужно.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell closing">
+      <h2 class="h-2">Попробуйте на&nbsp;своих делах</h2>
+      <p>Десяти минут хватит, чтобы понять, ваше это или нет. Если нет, удаляется обычным способом и&nbsp;ничего после себя не&nbsp;оставляет.</p>
+      <a class="btn btn--primary btn--lg" href="https://github.com/vantra-labs/clarify/releases/latest/download/Clarify_Setup.exe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>Скачать для Windows</a>
+      <p class="meta">Установщик, около 40&nbsp;МБ</p>
     </div>
   </section>
 
@@ -404,39 +205,37 @@
   <div class="shell">
     <div class="footer__grid">
       <div class="footer__about">
-        <a class="brand" href="../">
-          <svg class="brand__mark" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
-            <path d="M16 8.5 L23 8.5 A4 4 0 0 1 27 12.5 L27 51.5 A4 4 0 0 1 23 55.5 L16 55.5 A12 12 0 0 1 4 43.5 L4 20.5 A12 12 0 0 1 16 8.5 Z" transform="translate(0 -6)"/>
-            <path d="M41 8.5 L48 8.5 A12 12 0 0 1 60 20.5 L60 43.5 A12 12 0 0 1 48 55.5 L41 55.5 A4 4 0 0 1 37 51.5 L37 12.5 A4 4 0 0 1 41 8.5 Z" transform="translate(0 6)"/>
+        <a class="brand" translate="no" href="/" aria-label="VANTRA, на главную">
+          <svg class="brand__mark" viewBox="0 0 111 111" fill="currentColor" aria-hidden="true">
+            <path d="M0 43 L0 11 L32 11 L32 22 L11 22 L11 43 Z"/>
+            <path d="M111 32 L111 0 L79 0 L79 11 L100 11 L100 32 Z"/>
+            <path d="M0 79 L0 111 L32 111 L32 100 L11 100 L11 79 Z"/>
+            <path d="M100 79 L100 111 L68 111 L68 100 L89 100 L89 79 Z"/>
           </svg>
-          Clarify
+          VANTRA
         </a>
-        <p>Планировщик задач для Windows и телефона. Продукт студии VANTRA.</p>
+        <p>Небольшая студия. Большие проекты.</p>
       </div>
-
       <div>
-        <h3>Продукт</h3>
-        <ul>
-          <li><a href="#umeet">Возможности</a></li>
-          <li><a href="#ekrany">Экраны</a></li>
-          <li><a href="#ustanovka">Установка</a></li>
-          <li><a href="https://vantra-labs.github.io/app/" target="_blank" rel="noopener">Версия в браузере</a></li>
+        <h2 class="footer__title">Продукты</h2>
+        <ul class="footer__list">
+          <li><a href="../actum/">Actum</a></li>
+          <li><a href="./">Clarify</a></li>
+          <li><a href="../app/" target="_blank" rel="noopener">Clarify в&nbsp;браузере</a></li>
         </ul>
       </div>
-
       <div>
-        <h3>Связь</h3>
-        <ul>
-          <li><a href="https://t.me/ClarifyPlan" target="_blank" rel="noopener">Канал в Telegram</a></li>
-          <li><a href="https://t.me/ClarifyHelp_bot" target="_blank" rel="noopener">Написать в поддержку</a></li>
-          <li><a href="../">О студии</a></li>
+        <h2 class="footer__title">Связь</h2>
+        <ul class="footer__list">
+          <li><a href="https://t.me/ClarifyPlan" target="_blank" rel="noopener">Канал в&nbsp;Telegram</a></li>
+          <li><a href="https://t.me/ClarifyHelp_bot" target="_blank" rel="noopener">Поддержка Clarify</a></li>
         </ul>
       </div>
     </div>
-
     <div class="footer__bottom">
       <span>© 2026 VANTRA</span>
-      <a href="../privacy.html">Политика конфиденциальности</a>
+      <a href="../actum/privacy/">Конфиденциальность Actum</a>
+      <a href="../privacy.html">Конфиденциальность Clarify</a>
     </div>
   </div>
 </footer>

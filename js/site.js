@@ -1,14 +1,12 @@
 /* ============================================================================
    Скрипты сайта. Без библиотек.
 
-   Общий принцип: страница обязана быть полностью рабочей без этого файла.
-   Скрипт только добавляет удобство — он не создаёт содержимое и ничего не
-   прячет навсегда. Если он не загрузился, читается всё, галерея листается
-   пальцем и колесом, меню на телефоне остаётся раскрытым списком ссылок.
+   Страница обязана полностью работать без этого файла: скрипт добавляет
+   удобство, но не создаёт содержимое и ничего не прячет навсегда. Без него
+   всё видно сразу, экраны листаются пальцем, меню — просто список ссылок.
 
-   Обработчиков прокрутки здесь нет намеренно: они срабатывают на каждом
-   кадре и заметно портят плавность на телефоне. Вместо них
-   IntersectionObserver, который браузер считает сам.
+   Обработчиков прокрутки нет: только IntersectionObserver, который браузер
+   считает сам и не на каждом кадре.
    ========================================================================= */
 
 'use strict';
@@ -24,154 +22,124 @@ function initMenu() {
 
   const setOpen = (open) => {
     burger.setAttribute('aria-expanded', String(open));
-    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Меню');
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
     nav.classList.toggle('is-open', open);
   };
 
   burger.addEventListener('click', () => {
     setOpen(burger.getAttribute('aria-expanded') !== 'true');
   });
-
-  // Выбрали пункт — меню закрылось, иначе оно перекрывает то, к чему увело.
   nav.addEventListener('click', (e) => {
     if (e.target.closest('a')) setOpen(false);
   });
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') {
       setOpen(false);
       burger.focus();
     }
   });
-
-  // При возврате на широкий экран меню не должно остаться «открытым»:
-  // класс на десктопе ничего не делает, но состояние кнопки врало бы
-  // программам чтения с экрана.
-  window.matchMedia('(min-width: 861px)').addEventListener('change', (e) => {
+  window.matchMedia('(min-width: 821px)').addEventListener('change', (e) => {
     if (e.matches) setOpen(false);
   });
 }
 
-/* --- Линия под шапкой -------------------------------------------------- */
+/* --- Затемнение под шапкой ---------------------------------------------
+   Невидимая метка в самом верху страницы: ушла из вида — значит, под
+   шапкой уже есть содержимое. */
 
-function initHeaderLine() {
+function initHeader() {
   const header = document.getElementById('header');
-  if (!header) return;
-
-  // Метка нулевой высоты в самом верху: пока она в кадре, страница не
-  // прокручена. Дешевле и точнее, чем считать scrollY на каждом кадре.
+  if (!header || !('IntersectionObserver' in window)) return;
   const sentinel = document.createElement('div');
   sentinel.setAttribute('aria-hidden', 'true');
-  sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;';
+  sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:8px;';
   document.body.prepend(sentinel);
-
-  new IntersectionObserver(
-    ([entry]) => header.classList.toggle('is-stuck', !entry.isIntersecting)
-  ).observe(sentinel);
+  new IntersectionObserver(([entry]) => {
+    header.classList.toggle('is-scrolled', !entry.isIntersecting);
+  }).observe(sentinel);
 }
 
-/* --- Появление блоков при прокрутке ------------------------------------ */
+/* --- Проявление предметов при прокрутке --------------------------------
+   Только то, что ниже первого экрана в момент загрузки: уже видимое не
+   прячем, иначе оно мигнёт. Срабатывает один раз. */
 
-function initReveal() {
-  const items = document.querySelectorAll('.reveal');
+function initUnveil() {
+  if (REDUCED || !('IntersectionObserver' in window)) return;
+  const items = [...document.querySelectorAll('.unveil')]
+    .filter((el) => el.getBoundingClientRect().top > window.innerHeight);
   if (!items.length) return;
 
-  // Выключенные анимации или отсутствие наблюдателя — показываем всё сразу.
-  if (REDUCED || !('IntersectionObserver' in window)) return;
-
-  items.forEach((el) => el.classList.add('is-hidden'));
-
-  const io = new IntersectionObserver((entries, obs) => {
+  items.forEach((el) => el.classList.add('is-pending'));
+  const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
-      // Соседи в одной группе появляются по очереди, а не разом: так глаз
-      // успевает пройти по ним, а не получает всё пятно целиком.
-      const group = Array.from(el.parentElement.children).filter(
-        (n) => n.classList.contains('reveal')
-      );
-      el.style.setProperty('--reveal-delay', `${group.indexOf(el) * 70}ms`);
-      el.classList.remove('is-hidden');
-      el.classList.add('is-shown');
-      obs.unobserve(el);
+      el.classList.add('is-done');
+      el.classList.remove('is-pending');
+      io.unobserve(el);
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
+  }, { rootMargin: '0px 0px -12% 0px' });
   items.forEach((el) => io.observe(el));
 }
 
-/* --- Галерея ------------------------------------------------------------
-   Лента листается средствами браузера. Скрипт добавляет стрелки и точки и
-   следит, какой слайд сейчас в центре. Сам он ленту не двигает никогда,
-   кроме случая, когда человек нажал стрелку или точку.                    */
+/* --- Вкладки с лентой ---------------------------------------------------
+   Две дороги к одному состоянию: нажать вкладку или пролистнуть ленту.
+   Лента — источник правды: вкладка подсвечивается по тому, какой экран
+   сейчас в ленте, поэтому они не могут разойтись даже посреди жеста. */
 
-function initGallery(root) {
-  const track = root.querySelector('[data-track]');
-  const slides = Array.from(track.querySelectorAll('.slide'));
-  const prev = root.querySelector('[data-prev]');
-  const next = root.querySelector('[data-next]');
-  const dotsBox = root.querySelector('[data-dots]');
-  if (!slides.length) return;
+function initTabs(root) {
+  const tabs = [...root.querySelectorAll('[role="tab"]')];
+  const track = root.querySelector('.tabs__track');
+  const panels = [...root.querySelectorAll('[role="tabpanel"]')];
+  if (!tabs.length || !track || tabs.length !== panels.length) return;
 
-  let current = 0;
+  const select = (i) => {
+    tabs.forEach((t, j) => {
+      const on = i === j;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach((p, j) => p.toggleAttribute('inert', i !== j));
+  };
 
-  const dots = slides.map((slide, i) => {
-    const dot = document.createElement('button');
-    dot.type = 'button';
-    dot.className = 'gallery__dot';
-    // Подпись берём из заголовка слайда: «Слайд 3» не говорит ничего.
-    const title = slide.querySelector('.slide__title');
-    dot.setAttribute('aria-label', title ? title.textContent.trim() : `Экран ${i + 1}`);
-    dot.addEventListener('click', () => scrollToSlide(i));
-    dotsBox.appendChild(dot);
-    return dot;
+  const go = (i) => {
+    select(i);
+    track.scrollTo({ left: panels[i].offsetLeft - track.offsetLeft, behavior: REDUCED ? 'auto' : 'smooth' });
+    // Активная вкладка не должна уезжать за край узкого списка.
+    tabs[i].scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: REDUCED ? 'auto' : 'smooth' });
+  };
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => go(i));
+    tab.addEventListener('keydown', (e) => {
+      const last = tabs.length - 1;
+      let next = null;
+      if (e.key === 'ArrowRight') next = i === last ? 0 : i + 1;
+      if (e.key === 'ArrowLeft') next = i === 0 ? last : i - 1;
+      if (e.key === 'Home') next = 0;
+      if (e.key === 'End') next = last;
+      if (next === null) return;
+      e.preventDefault();
+      go(next);
+      tabs[next].focus();
+    });
   });
 
-  function scrollToSlide(i) {
-    const target = slides[Math.max(0, Math.min(i, slides.length - 1))];
-    // Считаем смещение внутри ленты сами: scrollIntoView увёл бы и всю
-    // страницу вбок или вверх, а нам нужно двигать только ленту.
-    const left = target.offsetLeft - (track.clientWidth - target.clientWidth) / 2;
-    track.scrollTo({ left, behavior: REDUCED ? 'auto' : 'smooth' });
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio > 0.6) select(panels.indexOf(entry.target));
+      });
+    }, { root: track, threshold: [0.6] });
+    panels.forEach((p) => io.observe(p));
   }
 
-  function setCurrent(i) {
-    current = i;
-    dots.forEach((dot, n) => {
-      if (n === i) dot.setAttribute('aria-current', 'true');
-      else dot.removeAttribute('aria-current');
-    });
-    if (prev) prev.disabled = i === 0;
-    if (next) next.disabled = i === slides.length - 1;
-  }
-
-  if (prev) prev.addEventListener('click', () => scrollToSlide(current - 1));
-  if (next) next.addEventListener('click', () => scrollToSlide(current + 1));
-
-  // Кто сейчас в центре. Порог высокий: слайд считается текущим, когда он
-  // действительно занял кадр, а не краем в него заехал.
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) setCurrent(slides.indexOf(entry.target));
-    });
-  }, { root: track, threshold: 0.6 });
-
-  slides.forEach((slide) => io.observe(slide));
-  setCurrent(0);
-
-  // Стрелками с клавиатуры, когда лента в фокусе. Браузер и сам умеет
-  // прокручивать её стрелками, но по пикселю, а не по слайду.
-  track.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); scrollToSlide(current + 1); }
-    if (e.key === 'ArrowLeft')  { e.preventDefault(); scrollToSlide(current - 1); }
-  });
+  select(0);
 }
 
 /* --- Запуск ------------------------------------------------------------ */
 
-document.addEventListener('DOMContentLoaded', () => {
-  initMenu();
-  initHeaderLine();
-  initReveal();
-  document.querySelectorAll('[data-gallery]').forEach(initGallery);
-});
+initMenu();
+initHeader();
+initUnveil();
+document.querySelectorAll('[data-tabs]').forEach(initTabs);
